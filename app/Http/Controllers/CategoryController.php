@@ -3,28 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\CategoryValidation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display a listing of the main category.
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $categories = DB::table('categories')->where('parent_id', '=', null)->get();
+        return response()->json($categories);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a listing of secondary category.
+     * @param Category $category
      */
-    public function create()
+    public function secondaryIndex(Category $category)
     {
-        //
+        $categories = DB::table('categories')->where('parent_id', '=', $category->id)->get();
+        return response()->json($categories);
     }
 
     /**
@@ -33,31 +35,18 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryValidation $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
+        //TODO Check if parent Id realy exist
+        $validated = $request->validated();
+        $category = new Category();
+        foreach ($validated as $key => $value) {
+            $category->$key = $value;
+        }
+        $category->save();
+        $validated['message'] = 'Category created!';
+        $validated['id'] = $category->id;
+        return response()->json($validated, 200);
     }
 
     /**
@@ -67,9 +56,16 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryValidation $request, Category $category)
     {
-        //
+        $validated = $request->validated();
+        foreach ($validated as $key => $value) {
+            $category->$key = $value;
+        }
+        $category->save();
+        $validated['message'] = 'Category updated!';
+        $validated['id'] = $category->id;
+        return response()->json($validated, 200);
     }
 
     /**
@@ -80,6 +76,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        DB::table('categories')->where('parent_id', '=', $category->id)->delete();
+        $category->delete();
+
+        return response()->json('Category deleted!', 200);
     }
 }

@@ -18,3 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('product', 'ProductController');
+Route::resource('category', 'CategoryController')->only([
+    'store', 'update', 'destroy'
+]);
+Route::get('/category', 'CategoryController@index')->name('category.index');
+Route::get('/category/{category}', 'CategoryController@secondaryIndex')->name('category.secondary.index');
