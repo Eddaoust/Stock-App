@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductValidation;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -25,9 +26,17 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductValidation $request)
     {
-        dd($request);
+        $validated = $request->validated();
+        $product = new Product();
+        foreach ($validated as $key => $value) {
+            $product->$key = $value;
+        }
+        $product->save();
+        $validated['message'] = 'Product created!';
+        $validated['id'] = $product->id;
+        return response()->json($validated, 200);
     }
 
     /**
@@ -48,9 +57,17 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductValidation $request, Product $product)
     {
-        //
+        dd($product);
+        /*$validated = $request->validated();
+        foreach ($validated as $key => $value) {
+            $product->$key = $value;
+        }
+        $product->save();
+        $validated['message'] = 'Product updated!';
+        $validated['id'] = $product->id;
+        return response()->json($validated, 200);*/
     }
 
     /**
