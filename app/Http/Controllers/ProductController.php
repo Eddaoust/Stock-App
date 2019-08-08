@@ -59,15 +59,14 @@ class ProductController extends Controller
      */
     public function update(ProductValidation $request, Product $product)
     {
-        dd($product);
-        /*$validated = $request->validated();
+        $validated = $request->validated();
         foreach ($validated as $key => $value) {
             $product->$key = $value;
         }
         $product->save();
         $validated['message'] = 'Product updated!';
         $validated['id'] = $product->id;
-        return response()->json($validated, 200);*/
+        return response()->json($validated, 200);
     }
 
     /**
@@ -78,6 +77,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response()->json('Product deleted!', 200);
     }
 }
