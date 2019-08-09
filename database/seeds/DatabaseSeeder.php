@@ -11,10 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Product::class, 30)
-            ->create();
-
-        factory(\App\Category::class, 30)
-            ->create();
+        factory(\App\Category::class, 30)->create()->each(function($category){
+            factory(\App\Product::class, 3)->create(['category_id' => $category->id]);
+        });
     }
+
 }
