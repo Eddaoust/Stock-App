@@ -25,7 +25,8 @@ class CategoryValidation extends FormRequest
     {
         return [
             'name' => 'required|string|min:2|max:255',
-            'parent_id' => 'integer'
+            'parent_id' => 'integer',
+            'user_id' => 'integer'
         ];
     }
 }

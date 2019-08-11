@@ -28,7 +28,9 @@ class ProductValidation extends FormRequest
             'description' => 'string|min:1',
             'img' => 'url',
             'rating' => 'integer',
-            'infos' => 'json'
+            'infos' => 'json',
+            'category_id' => 'integer',
+            'user_id' => 'integer'
         ];
     }
 }
