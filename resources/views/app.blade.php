@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 <body>
-<div id="app"></div>
+<div id="root"></div>
 
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
