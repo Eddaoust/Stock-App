@@ -1,4 +1,6 @@
-export const LOGIN = 'LOGIN';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
 export const FETCH_USER = 'FETCH_USER';
@@ -9,15 +11,44 @@ const REQUEST_HEADER = new Headers({
     'Accept': 'application/json',
 });
 
-export function loginUser(formValues) {
-    const request = fetch(`${ROOTURL}/api/login`, {
-        method: 'POST',
-        headers: REQUEST_HEADER,
-        body: JSON.stringify(formValues)
-    });
-
+export function loginRequest() {
     return {
-        type: LOGIN,
-        data: request
+        type: LOGIN_REQUEST,
     };
+}
+
+export function loginSuccess(token) {
+    return {
+        type: LOGIN_SUCCESS,
+        data: token
+    };
+}
+
+export function loginError(error) {
+    return {
+        type: LOGIN_ERROR,
+        data: error
+    }
+}
+
+export function loginProcess(formValues) {
+    return function(dispatch) {
+        dispatch(loginRequest())
+        return fetch(`${ROOTURL}/api/login`, {
+            method: 'POST',
+            headers: REQUEST_HEADER,
+            body: JSON.stringify(formValues)
+        })
+            .then(res => {
+                if (res.status !== 200) {
+                    dispatch(loginError(res))
+                } else {
+                    res.json()
+                        .then(response => {
+                            dispatch(loginSuccess(response));
+                        });
+                }
+
+            })
+    }
 }

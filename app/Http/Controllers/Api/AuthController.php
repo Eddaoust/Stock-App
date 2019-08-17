@@ -45,7 +45,7 @@ class AuthController extends Controller
                 return response($response, 200);
             } else {
                 $response = "Password missmatch";
-                return response($response, 422);
+                return response()->json($response, 422);
             }
 
         } else {
