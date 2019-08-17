@@ -93632,6 +93632,42 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/actions/users.js":
+/*!***************************************!*\
+  !*** ./resources/js/actions/users.js ***!
+  \***************************************/
+/*! exports provided: LOGIN, LOGOUT, REGISTER, FETCH_USER, loginUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN", function() { return LOGIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT", function() { return LOGOUT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER", function() { return REGISTER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_USER", function() { return FETCH_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginUser", function() { return loginUser; });
+var LOGIN = 'LOGIN';
+var LOGOUT = 'LOGOUT';
+var REGISTER = 'REGISTER';
+var FETCH_USER = 'FETCH_USER';
+var ROOTURL = 'http://localhost:8888';
+function loginUser(formValues) {
+  var request = fetch("".concat(ROOTURL, "/api/login"), {
+    method: 'POST',
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }),
+    body: JSON.stringify(formValues)
+  });
+  return {
+    type: LOGIN,
+    data: request
+  };
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -93761,7 +93797,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
+ //TODO implement front validation on user input
 
 var Login =
 /*#__PURE__*/
@@ -93777,6 +93813,8 @@ function (_Component) {
   _createClass(Login, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
         container: true,
         className: _Login_Login_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Root
@@ -93800,7 +93838,12 @@ function (_Component) {
         component: "h1",
         variant: "h5"
       }, "Connexion"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: _Login_Login_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Form
+        className: _Login_Login_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Form,
+        onSubmit: function onSubmit(e) {
+          e.preventDefault();
+
+          _this.props.onLogin(e);
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__["default"], {
         variant: "outlined",
         margin: "normal",
@@ -93822,12 +93865,11 @@ function (_Component) {
         id: "password",
         autoComplete: "current-password"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        type: "button",
+        type: "submit",
         fullWidth: true,
         variant: "contained",
         color: "primary",
-        className: _Login_Login_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Submit,
-        onClick: this.props.onLogin
+        className: _Login_Login_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Submit
       }, "Connexion"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
         container: true
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -93921,6 +93963,8 @@ function AppContainer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Login_Login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Login/Login */ "./resources/js/components/Login/Login.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/users */ "./resources/js/actions/users.js");
+
 
 
 
@@ -93933,10 +93977,10 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    onLogin: function onLogin() {
-      return dispatch({
-        type: 'LOGIN',
-        isAuth: true
+    onLogin: function onLogin(e) {
+      return Object(_actions_users__WEBPACK_IMPORTED_MODULE_2__["loginUser"])({
+        email: e.target.querySelectorAll('input')[0].value,
+        password: e.target.querySelectorAll('input')[1].value
       });
     },
     onLogout: function onLogout() {

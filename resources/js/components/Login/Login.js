@@ -8,6 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+//TODO implement front validation on user input
+
 class Login extends Component {
     render() {
         return (
@@ -21,7 +23,10 @@ class Login extends Component {
                         <Typography component="h1" variant="h5">
                             Connexion
                         </Typography>
-                        <form className={classes.Form}>
+                        <form className={classes.Form} onSubmit={e => {
+                            e.preventDefault()
+                            this.props.onLogin(e)}
+                        }>
                             <TextField
                                 variant="outlined"
                                 margin="normal"
@@ -45,12 +50,11 @@ class Login extends Component {
                                 autoComplete="current-password"
                             />
                             <Button
-                                type="button"
+                                type="submit"
                                 fullWidth
                                 variant="contained"
                                 color="primary"
                                 className={classes.Submit}
-                                onClick={this.props.onLogin}
                             >
                                 Connexion
                             </Button>

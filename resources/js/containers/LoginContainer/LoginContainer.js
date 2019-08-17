@@ -1,5 +1,7 @@
 import Login from '../../components/Login/Login';
 import {connect} from 'react-redux';
+import {loginUser} from '../../actions/users';
+
 
 const mapStateToProps = state => {
     return {
@@ -10,7 +12,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: () => dispatch({type: 'LOGIN', isAuth: true}),
+        onLogin: (e) => loginUser({
+            email: e.target.querySelectorAll('input')[0].value,
+            password: e.target.querySelectorAll('input')[1].value
+        }),
         onLogout: () => dispatch({type: 'LOGOUT', isAuth: false}),
     };
 };
