@@ -7,19 +7,34 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 //TODO implement front validation on user input
 
 class Login extends Component {
     render() {
+
+        // Render the spinner on loading
+        let avatar = '';
+        if (this.props.loading) {
+            avatar = <CircularProgress className={classes.progress} color="secondary" />;
+        } else {
+            avatar = <Avatar className={classes.Avatar}><LockOutlinedIcon/></Avatar>;
+        }
+        // Add fields error props
+        let error = false;
+        let helperText = '';
+        if (this.props.error.status) {
+            error = true;
+            helperText = 'Email ou mot de passe non valide'
+        }
+
         return (
             <Grid container className={classes.Root}>
                 <Grid item xs={false} sm={4} md={7} className={classes.Image} />
                 <Grid item xs={12} sm={8} md={5} elevation={6}>
                     <div className={classes.Paper}>
-                        <Avatar className={classes.Avatar}>
-                            <LockOutlinedIcon/>
-                        </Avatar>
+                        {avatar}
                         <Typography component="h1" variant="h5">
                             Connexion
                         </Typography>
@@ -28,6 +43,8 @@ class Login extends Component {
                             this.props.onLogin(e)}
                         }>
                             <TextField
+                                error={error}
+                                helperText={helperText}
                                 variant="outlined"
                                 margin="normal"
                                 required
@@ -39,6 +56,8 @@ class Login extends Component {
                                 autoFocus
                             />
                             <TextField
+                                error={error}
+                                helperText={helperText}
                                 variant="outlined"
                                 margin="normal"
                                 required
