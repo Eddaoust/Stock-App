@@ -4,7 +4,7 @@ const initialState = {
     isAuthenticated: false,
     accessToken: '',
     loading: false,
-    error: null,
+    error: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
             loading: true
         };
     } else if(action.type === LOGIN_ERROR) {
-        console.log(action.data)
         return {
             ...state,
             loading: false,
@@ -26,7 +25,7 @@ const reducer = (state = initialState, action) => {
             loading: false,
             isAuthenticated: true,
             accessToken: action.data.token,
-            error: null
+            error: {}
         };
     }
     return state;

@@ -41,14 +41,20 @@ export function loginProcess(formValues) {
         })
             .then(res => {
                 if (res.status !== 200) {
-                    dispatch(loginError(res))
+                    const handleError = {
+                        status: res.status,
+                        text: res.statusText,
+                        data: ''
+                    };
+                    res.json()
+                        .then(error => {
+                            handleError.data = error;
+                            dispatch(loginError(handleError))
+                        })
                 } else {
                     res.json()
-                        .then(response => {
-                            dispatch(loginSuccess(response));
-                        });
+                        .then(response => dispatch(loginSuccess(response)));
                 }
-
             })
     }
 }

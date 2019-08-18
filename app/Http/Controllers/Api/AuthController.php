@@ -50,7 +50,7 @@ class AuthController extends Controller
 
         } else {
             $response = 'User does not exist';
-            return response($response, 422);
+            return response()->json($response, 422);
         }
 
     }

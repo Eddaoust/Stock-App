@@ -93720,10 +93720,18 @@ function loginProcess(formValues) {
       body: JSON.stringify(formValues)
     }).then(function (res) {
       if (res.status !== 200) {
-        dispatch(loginError(res));
+        var handleError = {
+          status: res.status,
+          text: res.statusText,
+          data: ''
+        };
+        res.json().then(function (error) {
+          handleError.data = error;
+          dispatch(loginError(handleError));
+        });
       } else {
         res.json().then(function (response) {
-          dispatch(loginSuccess(response));
+          return dispatch(loginSuccess(response));
         });
       }
     });
@@ -94167,7 +94175,7 @@ var initialState = {
   isAuthenticated: false,
   accessToken: '',
   loading: false,
-  error: null
+  error: {}
 };
 
 var reducer = function reducer() {
@@ -94179,7 +94187,6 @@ var reducer = function reducer() {
       loading: true
     });
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["LOGIN_ERROR"]) {
-    console.log(action.data);
     return _objectSpread({}, state, {
       loading: false,
       error: action.data
@@ -94189,7 +94196,7 @@ var reducer = function reducer() {
       loading: false,
       isAuthenticated: true,
       accessToken: action.data.token,
-      error: null
+      error: {}
     });
   }
 
