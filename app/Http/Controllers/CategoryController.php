@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\CategoryValidation;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,9 +14,11 @@ class CategoryController extends Controller
      * Display a listing of the main category.
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        $categories = DB::table('categories')->where('parent_id', '=', null)->get();
+        $categories = DB::table('categories')
+            ->where('user_id', '=', $user->id)
+            ->get();
         return response()->json($categories);
     }
 
