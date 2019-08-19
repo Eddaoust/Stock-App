@@ -5,8 +5,14 @@ import {
     REGISTER_REQUEST,
     REGISTER_ERROR,
     REGISTER_SUCCESS,
-    REGISTER_TOGGLE_STATUS} from '../actions/users';
+    } from '../actions/users';
 
+import {
+    CATEGORY_FETCH_REQUEST,
+    CATEGORY_FETCH_SUCCESS,
+    CATEGORY_FETCH_ERROR
+    } from '../actions/categories';
+//TODO reset  the error state by adding an action on mount
 const initialState = {
     isAuthenticated: false,
     accessToken: '',
@@ -14,7 +20,8 @@ const initialState = {
     user: null,
     error: {
         login: false,
-        registration: false
+        registration: false,
+        category: false
     },
 };
 
@@ -30,7 +37,8 @@ const reducer = (state = initialState, action) => {
             loading: false,
             error: {
                 login: action.data,
-                registration: false
+                registration: false,
+                category: false
             }
         };
     } else if(action.type === LOGIN_SUCCESS) {
@@ -42,7 +50,8 @@ const reducer = (state = initialState, action) => {
             user: action.data.user,
             error: {
                 login: false,
-                registration: false
+                registration: false,
+                category: false
             }
         };
     } else if(action.type === REGISTER_REQUEST) {
@@ -56,7 +65,8 @@ const reducer = (state = initialState, action) => {
             loading: false,
             error: {
                 login: false,
-                registration: action.data
+                registration: action.data,
+                category: false
             }
         };
     } else if(action.type === REGISTER_SUCCESS) {
@@ -66,9 +76,26 @@ const reducer = (state = initialState, action) => {
             accessToken: action.data.token,
             error: {
                 login: false,
-                registration: false
+                registration: false,
+                category: false
             },
             isRegister: true
+        };
+    } else if(action.type === CATEGORY_FETCH_REQUEST) {
+        return {
+            ...state,
+
+        };
+    } else if(action.type === CATEGORY_FETCH_ERROR) {
+        return {
+            ...state,
+
+        };
+    } else if(action.type === CATEGORY_FETCH_SUCCESS) {
+        console.log(action.data)
+        return {
+            ...state,
+
         };
     }
     return state;

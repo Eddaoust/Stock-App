@@ -30,7 +30,7 @@ class Login extends Component {
         }
 
         if (this.props.isAuthenticated && !this.props.error.login) {
-            return <Redirect to="/"/>;
+            return <Redirect to="/stock"/>;
         } else {
             return (
                 <Grid container className={classes.Root}>

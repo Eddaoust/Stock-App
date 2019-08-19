@@ -1,6 +1,6 @@
 import Login from '../../components/Login/Login';
 import {connect} from 'react-redux';
-import {loginProcess, registerToggleStatus} from '../../actions/users';
+import {loginProcess} from '../../actions/users';
 
 
 const mapStateToProps = state => {
