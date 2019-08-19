@@ -96,15 +96,15 @@ export function registrationProcess(formValues) {
                         data: ''
                     };
                     res.json()
-                        .then(error => {
-                            handleError.data = error;
-                            dispatch(registerError(handleError))
-                        })
+                    .then(error => {
+                        handleError.data = error;
+                        dispatch(registerError(handleError))
+                    })
                 } else {
                     res.json()
-                        .then(response => {
-                            dispatch(registerSuccess(response))
-                        });
+                    .then(response => {
+                        dispatch(registerSuccess(response))
+                    });
                 }
             })
     }

@@ -33,8 +33,8 @@ class Registration extends Component {
                 ]
             }
         };
-        if (this.props.error) {
-            this.props.error.data.errors.map(e => {
+        if (this.props.error.registration) {
+            this.props.error.registration.data.errors.map(e => {
                 if (e === 'The email has already been taken.') {
                     error.email.error = true;
                     error.email.message = "L'email est déja utilisé.";
@@ -48,8 +48,9 @@ class Registration extends Component {
             })
 
         }
-        if (this.props.isRegister) {
-            return <Redirect to="/"/>;
+
+        if (this.props.isRegister && !this.props.error.registration) {
+            return <Redirect to="/"/>
         } else {
             return (
                 <Container className={classes.Container} maxWidth="xs">
@@ -72,6 +73,7 @@ class Registration extends Component {
                                         id="firstName"
                                         label="Prénom"
                                         autoFocus
+                                        type="text"
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -82,6 +84,7 @@ class Registration extends Component {
                                         id="lastName"
                                         label="Nom"
                                         name="lastName"
+                                        type="text"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -94,6 +97,7 @@ class Registration extends Component {
                                         id="email"
                                         label="Email"
                                         name="email"
+                                        type="email"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -142,7 +146,6 @@ class Registration extends Component {
                 </Container>
             );
         }
-
     }
 }
 

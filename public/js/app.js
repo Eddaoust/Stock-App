@@ -94525,14 +94525,14 @@ function (_Component) {
       var error = false;
       var helperText = '';
 
-      if (this.props.error.status) {
+      if (this.props.error.login.status) {
         error = true;
         helperText = 'Email ou mot de passe non valide';
       }
 
-      if (this.props.isAuthenticated) {
+      if (this.props.isAuthenticated && !this.props.error.login) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
-          to: "/login"
+          to: "/"
         });
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -94573,6 +94573,7 @@ function (_Component) {
           label: "Email",
           name: "email",
           autoComplete: "email",
+          type: "email",
           autoFocus: true
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
           error: error,
@@ -94740,8 +94741,8 @@ function (_Component) {
         }
       };
 
-      if (this.props.error) {
-        this.props.error.data.errors.map(function (e) {
+      if (this.props.error.registration) {
+        this.props.error.registration.data.errors.map(function (e) {
           if (e === 'The email has already been taken.') {
             error.email.error = true;
             error.email.message = "L'email est déja utilisé.";
@@ -94755,7 +94756,7 @@ function (_Component) {
         });
       }
 
-      if (this.props.isRegister) {
+      if (this.props.isRegister && !this.props.error.registration) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
           to: "/"
         });
@@ -94789,7 +94790,8 @@ function (_Component) {
           fullWidth: true,
           id: "firstName",
           label: "Pr\xE9nom",
-          autoFocus: true
+          autoFocus: true,
+          type: "text"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
           item: true,
           xs: 12,
@@ -94800,7 +94802,8 @@ function (_Component) {
           fullWidth: true,
           id: "lastName",
           label: "Nom",
-          name: "lastName"
+          name: "lastName",
+          type: "text"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
           item: true,
           xs: 12
@@ -94812,7 +94815,8 @@ function (_Component) {
           fullWidth: true,
           id: "email",
           label: "Email",
-          name: "email"
+          name: "email",
+          type: "email"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
           item: true,
           xs: 12
@@ -95146,7 +95150,10 @@ var initialState = {
   isAuthenticated: false,
   accessToken: '',
   loading: false,
-  error: false
+  error: {
+    login: false,
+    registration: false
+  }
 };
 
 var reducer = function reducer() {
@@ -95160,14 +95167,20 @@ var reducer = function reducer() {
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["LOGIN_ERROR"]) {
     return _objectSpread({}, state, {
       loading: false,
-      error: action.data
+      error: {
+        login: action.data,
+        registration: false
+      }
     });
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["LOGIN_SUCCESS"]) {
     return _objectSpread({}, state, {
       loading: false,
       isAuthenticated: true,
       accessToken: action.data.token,
-      error: {}
+      error: {
+        login: false,
+        registration: false
+      }
     });
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["REGISTER_REQUEST"]) {
     return _objectSpread({}, state, {
@@ -95176,13 +95189,19 @@ var reducer = function reducer() {
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["REGISTER_ERROR"]) {
     return _objectSpread({}, state, {
       loading: false,
-      error: action.data
+      error: {
+        login: false,
+        registration: action.data
+      }
     });
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["REGISTER_SUCCESS"]) {
     return _objectSpread({}, state, {
       loading: false,
       accessToken: action.data.token,
-      error: false,
+      error: {
+        login: false,
+        registration: false
+      },
       isRegister: true
     });
   }

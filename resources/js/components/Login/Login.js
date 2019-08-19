@@ -14,7 +14,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 class Login extends Component {
     render() {
-
         // Render the spinner on loading
         let avatar = '';
         if (this.props.loading) {
@@ -25,13 +24,13 @@ class Login extends Component {
         // Add fields error props
         let error = false;
         let helperText = '';
-        if (this.props.error.status) {
+        if (this.props.error.login.status) {
             error = true;
             helperText = 'Email ou mot de passe non valide'
         }
 
-        if (this.props.isAuthenticated) {
-            return <Redirect to="/login"/>;
+        if (this.props.isAuthenticated && !this.props.error.login) {
+            return <Redirect to="/"/>;
         } else {
             return (
                 <Grid container className={classes.Root}>
@@ -57,6 +56,7 @@ class Login extends Component {
                                     label="Email"
                                     name="email"
                                     autoComplete="email"
+                                    type="email"
                                     autoFocus
                                 />
                                 <TextField
