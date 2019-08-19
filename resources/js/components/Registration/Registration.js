@@ -138,6 +138,7 @@ class Registration extends Component {
                             </Button>
                             <Grid container justify="flex-end">
                                 <Grid item>
+                                    {/* TODO: impossible to click when register or authicated is true */}
                                     <RouterLink to="/">Vous avez déja un compte? Connectez vous</RouterLink>
                                 </Grid>
                             </Grid>
