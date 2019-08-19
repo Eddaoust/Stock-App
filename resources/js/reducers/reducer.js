@@ -1,10 +1,16 @@
-import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../actions/users';
+import {
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_ERROR,
+    REGISTER_REQUEST,
+    REGISTER_ERROR,
+    REGISTER_SUCCESS} from '../actions/users';
 
 const initialState = {
     isAuthenticated: false,
     accessToken: '',
     loading: false,
-    error: {},
+    error: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,6 +32,25 @@ const reducer = (state = initialState, action) => {
             isAuthenticated: true,
             accessToken: action.data.token,
             error: {}
+        };
+    } else if(action.type === REGISTER_REQUEST) {
+        return {
+            ...state,
+            loading: true,
+        };
+    } else if(action.type === REGISTER_ERROR) {
+        return {
+            ...state,
+            loading: false,
+            error: action.data
+        };
+    } else if(action.type === REGISTER_SUCCESS) {
+        return {
+            ...state,
+            loading: false,
+            accessToken: action.data.token,
+            error: false,
+            isRegister: true
         };
     }
     return state;

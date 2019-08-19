@@ -1,8 +1,9 @@
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const LOGOUT = 'LOGOUT';
-export const REGISTER = 'REGISTER';
+export const REGISTER_REQUEST = 'REGISTER_REQUEST';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
 export const FETCH_USER = 'FETCH_USER';
 
 const ROOTURL = 'http://localhost:8888';
@@ -54,6 +55,56 @@ export function loginProcess(formValues) {
                 } else {
                     res.json()
                         .then(response => dispatch(loginSuccess(response)));
+                }
+            })
+    }
+}
+
+export function registerRequest() {
+    return {
+        type: REGISTER_REQUEST,
+    };
+}
+
+export function registerSuccess(token) {
+    return {
+        type: REGISTER_SUCCESS,
+        data: token
+    };
+}
+
+export function registerError(error) {
+    return {
+        type: REGISTER_ERROR,
+        data: error
+    }
+}
+
+export function registrationProcess(formValues) {
+    return function(dispatch) {
+        dispatch(registerRequest())
+        return fetch(`${ROOTURL}/api/register`, {
+            method: 'POST',
+            headers: REQUEST_HEADER,
+            body: JSON.stringify(formValues)
+        })
+            .then(res => {
+                if (res.status !== 200) {
+                    const handleError = {
+                        status: res.status,
+                        text: res.statusText,
+                        data: ''
+                    };
+                    res.json()
+                        .then(error => {
+                            handleError.data = error;
+                            dispatch(registerError(handleError))
+                        })
+                } else {
+                    res.json()
+                        .then(response => {
+                            dispatch(registerSuccess(response))
+                        });
                 }
             })
     }
