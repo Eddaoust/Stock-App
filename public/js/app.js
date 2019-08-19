@@ -94954,7 +94954,8 @@ var mapStateToProps = function mapStateToProps(state) {
     isAuthenticated: state.isAuthenticated,
     accessToken: state.accessToken,
     loading: state.loading,
-    error: state.error
+    error: state.error,
+    user: state.user
   };
 };
 
@@ -95150,6 +95151,7 @@ var initialState = {
   isAuthenticated: false,
   accessToken: '',
   loading: false,
+  user: null,
   error: {
     login: false,
     registration: false
@@ -95177,6 +95179,7 @@ var reducer = function reducer() {
       loading: false,
       isAuthenticated: true,
       accessToken: action.data.token,
+      user: action.data.user,
       error: {
         login: false,
         registration: false

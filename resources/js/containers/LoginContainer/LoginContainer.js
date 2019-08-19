@@ -9,6 +9,7 @@ const mapStateToProps = state => {
         accessToken: state.accessToken,
         loading: state.loading,
         error: state.error,
+        user: state.user
     };
 };
 

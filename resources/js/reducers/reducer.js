@@ -11,6 +11,7 @@ const initialState = {
     isAuthenticated: false,
     accessToken: '',
     loading: false,
+    user: null,
     error: {
         login: false,
         registration: false
@@ -38,6 +39,7 @@ const reducer = (state = initialState, action) => {
             loading: false,
             isAuthenticated: true,
             accessToken: action.data.token,
+            user: action.data.user,
             error: {
                 login: false,
                 registration: false
