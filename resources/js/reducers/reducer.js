@@ -4,82 +4,64 @@ import {
     LOGIN_ERROR,
     REGISTER_REQUEST,
     REGISTER_ERROR,
-    REGISTER_SUCCESS,
-    } from '../actions/users';
+    REGISTER_SUCCESS, LOGIN_CLEAR_ERROR, REGISTER_CLEAR_ERROR,
+} from '../actions/users';
 
 import {
     CATEGORY_FETCH_REQUEST,
     CATEGORY_FETCH_SUCCESS,
     CATEGORY_FETCH_ERROR
     } from '../actions/categories';
+
 //TODO reset  the error state by adding an action on mount
 const initialState = {
-    isAuthenticated: false,
-    accessToken: '',
-    loading: false,
-    user: null,
-    error: {
-        login: false,
-        registration: false,
-        category: false
-    },
+    user: { status: false, data : {} },
+    login: { loading: false, error: false },
+    registration: { loading: false, error: false }
 };
 
 const reducer = (state = initialState, action) => {
     if (action.type === LOGIN_REQUEST) {
         return {
             ...state,
-            loading: true
+            login: { loading: true, error: false },
         };
     } else if(action.type === LOGIN_ERROR) {
         return {
             ...state,
-            loading: false,
-            error: {
-                login: action.data,
-                registration: false,
-                category: false
-            }
+            login: { loading: false, error: action.data },
         };
     } else if(action.type === LOGIN_SUCCESS) {
         return {
             ...state,
-            loading: false,
-            isAuthenticated: true,
-            accessToken: action.data.token,
-            user: action.data.user,
-            error: {
-                login: false,
-                registration: false,
-                category: false
-            }
+            user: { status: 'auth', data : {...action.data.user, accessToken: action.data.token} },
+            login: { loading: false, error: false },
+        };
+    } else if(action.type === LOGIN_CLEAR_ERROR) {
+        return {
+            ...state,
+            login: { loading: false, error: false }
         };
     } else if(action.type === REGISTER_REQUEST) {
         return {
             ...state,
-            loading: true,
+            registration: { loading: true, error: false }
         };
     } else if(action.type === REGISTER_ERROR) {
         return {
             ...state,
-            loading: false,
-            error: {
-                login: false,
-                registration: action.data,
-                category: false
-            }
+            registration: { loading: false, error: action.data }
         };
     } else if(action.type === REGISTER_SUCCESS) {
         return {
             ...state,
-            loading: false,
-            accessToken: action.data.token,
-            error: {
-                login: false,
-                registration: false,
-                category: false
-            },
-            isRegister: true
+            user: { status: 'reg', data : {accessToken: action.data.token} },
+            registration: { loading: false, error: false },
+        };
+    } else if(action.type === REGISTER_CLEAR_ERROR) {
+        return {
+            ...state,
+            registration: { loading: false, error: false }
         };
     } else if(action.type === CATEGORY_FETCH_REQUEST) {
         return {
@@ -92,7 +74,6 @@ const reducer = (state = initialState, action) => {
 
         };
     } else if(action.type === CATEGORY_FETCH_SUCCESS) {
-        console.log(action.data)
         return {
             ...state,
 

@@ -94602,7 +94602,7 @@ function categoryFetchProcess(user_id, token) {
 /*!***************************************!*\
   !*** ./resources/js/actions/users.js ***!
   \***************************************/
-/*! exports provided: LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_ERROR, FETCH_USER, loginRequest, loginSuccess, loginError, loginProcess, registerRequest, registerSuccess, registerError, registrationProcess */
+/*! exports provided: LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR, LOGIN_CLEAR_ERROR, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_ERROR, REGISTER_CLEAR_ERROR, FETCH_USER, loginRequest, loginSuccess, loginError, loginClearError, loginProcess, registerRequest, registerSuccess, registerError, registerClearError, registrationProcess */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94610,24 +94610,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_REQUEST", function() { return LOGIN_REQUEST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_SUCCESS", function() { return LOGIN_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_ERROR", function() { return LOGIN_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_CLEAR_ERROR", function() { return LOGIN_CLEAR_ERROR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER_REQUEST", function() { return REGISTER_REQUEST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER_SUCCESS", function() { return REGISTER_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER_ERROR", function() { return REGISTER_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER_CLEAR_ERROR", function() { return REGISTER_CLEAR_ERROR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_USER", function() { return FETCH_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginRequest", function() { return loginRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginSuccess", function() { return loginSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginError", function() { return loginError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginClearError", function() { return loginClearError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginProcess", function() { return loginProcess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerRequest", function() { return registerRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerSuccess", function() { return registerSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerError", function() { return registerError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerClearError", function() { return registerClearError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registrationProcess", function() { return registrationProcess; });
 var LOGIN_REQUEST = 'LOGIN_REQUEST';
 var LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 var LOGIN_ERROR = 'LOGIN_ERROR';
+var LOGIN_CLEAR_ERROR = 'LOGIN_CLEAR_ERROR';
 var REGISTER_REQUEST = 'REGISTER_REQUEST';
 var REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 var REGISTER_ERROR = 'REGISTER_ERROR';
+var REGISTER_CLEAR_ERROR = 'REGISTER_CLEAR_ERROR';
 var FETCH_USER = 'FETCH_USER';
 var ROOTURL = 'http://localhost:8888';
 var REQUEST_HEADER = new Headers({
@@ -94649,6 +94655,11 @@ function loginError(error) {
   return {
     type: LOGIN_ERROR,
     data: error
+  };
+}
+function loginClearError() {
+  return {
+    type: LOGIN_CLEAR_ERROR
   };
 }
 function loginProcess(formValues) {
@@ -94692,6 +94703,11 @@ function registerError(error) {
   return {
     type: REGISTER_ERROR,
     data: error
+  };
+}
+function registerClearError() {
+  return {
+    type: REGISTER_CLEAR_ERROR
   };
 }
 function registrationProcess(formValues) {
@@ -94931,6 +94947,11 @@ function (_Component) {
   }
 
   _createClass(Login, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearError();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
@@ -94938,7 +94959,7 @@ function (_Component) {
       // Render the spinner on loading
       var avatar = '';
 
-      if (this.props.loading) {
+      if (this.props.login.loading) {
         avatar = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_10__["default"], {
           className: _Login_Login_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.progress,
           color: "secondary"
@@ -94953,12 +94974,12 @@ function (_Component) {
       var error = false;
       var helperText = '';
 
-      if (this.props.error.login.status) {
+      if (this.props.login.error) {
         error = true;
         helperText = 'Email ou mot de passe non valide';
       }
 
-      if (this.props.isAuthenticated && !this.props.error.login) {
+      if (this.props.user.status === 'auth' && !this.props.login.error) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
           to: "/stock"
         });
@@ -95171,6 +95192,11 @@ function (_Component) {
   }
 
   _createClass(Registration, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearError();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
@@ -95178,7 +95204,7 @@ function (_Component) {
       // Render the spinner on loading
       var avatar = '';
 
-      if (this.props.loading) {
+      if (this.props.registration.loading) {
         avatar = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_10__["default"], {
           color: "secondary"
         });
@@ -95200,8 +95226,8 @@ function (_Component) {
         }
       };
 
-      if (this.props.error.registration) {
-        this.props.error.registration.data.errors.map(function (e) {
+      if (this.props.registration.error) {
+        this.props.registration.error.data.errors.map(function (e) {
           if (e === 'The email has already been taken.') {
             error.email.error = true;
             error.email.message = "L'email est déja utilisé.";
@@ -95215,7 +95241,7 @@ function (_Component) {
         });
       }
 
-      if (this.props.isRegister && !this.props.error.registration) {
+      if (this.props.user.status === 'reg' && !this.props.registration.error) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
           to: "/"
         });
@@ -95420,7 +95446,8 @@ var mapStateToProps = function mapStateToProps(state) {
     accessToken: state.accessToken,
     loading: state.loading,
     error: state.error,
-    user: state.user
+    user: state.user,
+    category: state.category
   };
 };
 
@@ -95454,11 +95481,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    isAuthenticated: state.isAuthenticated,
-    accessToken: state.accessToken,
-    loading: state.loading,
-    error: state.error,
-    user: state.user
+    user: state.user,
+    login: state.login
   };
 };
 
@@ -95469,6 +95493,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         email: e.target.querySelectorAll('input')[0].value,
         password: e.target.querySelectorAll('input')[1].value
       }));
+    },
+    clearError: function clearError() {
+      return dispatch(Object(_actions_users__WEBPACK_IMPORTED_MODULE_2__["loginClearError"])());
     }
   };
 };
@@ -95495,10 +95522,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    accessToken: state.accessToken,
-    loading: state.loading,
-    error: state.error,
-    isRegister: state.isRegister
+    user: state.user,
+    registration: state.registration
   };
 };
 
@@ -95512,6 +95537,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         password: e.target.querySelectorAll('input')[3].value,
         password_confirmation: e.target.querySelectorAll('input')[4].value
       }));
+    },
+    clearError: function clearError() {
+      return dispatch(Object(_actions_users__WEBPACK_IMPORTED_MODULE_2__["registerClearError"])());
     }
   };
 };
@@ -95676,16 +95704,20 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+ //TODO reset  the error state by adding an action on mount
 
 var initialState = {
-  isAuthenticated: false,
-  accessToken: '',
-  loading: false,
-  user: null,
-  error: {
-    login: false,
-    registration: false,
-    category: false
+  user: {
+    status: false,
+    data: {}
+  },
+  login: {
+    loading: false,
+    error: false
+  },
+  registration: {
+    loading: false,
+    error: false
   }
 };
 
@@ -95695,59 +95727,77 @@ var reducer = function reducer() {
 
   if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["LOGIN_REQUEST"]) {
     return _objectSpread({}, state, {
-      loading: true
+      login: {
+        loading: true,
+        error: false
+      }
     });
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["LOGIN_ERROR"]) {
     return _objectSpread({}, state, {
-      loading: false,
-      error: {
-        login: action.data,
-        registration: false,
-        category: false
+      login: {
+        loading: false,
+        error: action.data
       }
     });
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["LOGIN_SUCCESS"]) {
     return _objectSpread({}, state, {
-      loading: false,
-      isAuthenticated: true,
-      accessToken: action.data.token,
-      user: action.data.user,
-      error: {
-        login: false,
-        registration: false,
-        category: false
+      user: {
+        status: 'auth',
+        data: _objectSpread({}, action.data.user, {
+          accessToken: action.data.token
+        })
+      },
+      login: {
+        loading: false,
+        error: false
+      }
+    });
+  } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["LOGIN_CLEAR_ERROR"]) {
+    return _objectSpread({}, state, {
+      login: {
+        loading: false,
+        error: false
       }
     });
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["REGISTER_REQUEST"]) {
     return _objectSpread({}, state, {
-      loading: true
+      registration: {
+        loading: true,
+        error: false
+      }
     });
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["REGISTER_ERROR"]) {
     return _objectSpread({}, state, {
-      loading: false,
-      error: {
-        login: false,
-        registration: action.data,
-        category: false
+      registration: {
+        loading: false,
+        error: action.data
       }
     });
   } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["REGISTER_SUCCESS"]) {
     return _objectSpread({}, state, {
-      loading: false,
-      accessToken: action.data.token,
-      error: {
-        login: false,
-        registration: false,
-        category: false
+      user: {
+        status: 'reg',
+        data: {
+          accessToken: action.data.token
+        }
       },
-      isRegister: true
+      registration: {
+        loading: false,
+        error: false
+      }
+    });
+  } else if (action.type === _actions_users__WEBPACK_IMPORTED_MODULE_0__["REGISTER_CLEAR_ERROR"]) {
+    return _objectSpread({}, state, {
+      registration: {
+        loading: false,
+        error: false
+      }
     });
   } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_FETCH_REQUEST"]) {
     return _objectSpread({}, state);
   } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_FETCH_ERROR"]) {
     return _objectSpread({}, state);
   } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_FETCH_SUCCESS"]) {
-    console.log(action.data);
     return _objectSpread({}, state);
   }
 

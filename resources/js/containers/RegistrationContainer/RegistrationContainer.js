@@ -1,14 +1,12 @@
 import Registration from '../../components/Registration/Registration';
 import {connect} from 'react-redux';
-import {registrationProcess} from '../../actions/users';
+import {registrationProcess, registerClearError} from '../../actions/users';
 
 
 const mapStateToProps = state => {
     return {
-        accessToken: state.accessToken,
-        loading: state.loading,
-        error: state.error,
-        isRegister: state.isRegister
+        user: state.user,
+        registration: state.registration
     };
 };
 
@@ -22,7 +20,8 @@ const mapDispatchToProps = dispatch => {
                 password: e.target.querySelectorAll('input')[3].value,
                 password_confirmation: e.target.querySelectorAll('input')[4].value,
             }))
-        }
+        },
+        clearError: () => dispatch(registerClearError())
     };
 };
 

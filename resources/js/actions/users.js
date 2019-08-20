@@ -1,9 +1,11 @@
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_CLEAR_ERROR = 'LOGIN_CLEAR_ERROR';
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_ERROR = 'REGISTER_ERROR';
+export const REGISTER_CLEAR_ERROR = 'REGISTER_CLEAR_ERROR';
 export const FETCH_USER = 'FETCH_USER';
 
 const ROOTURL = 'http://localhost:8888';
@@ -29,6 +31,12 @@ export function loginError(error) {
     return {
         type: LOGIN_ERROR,
         data: error
+    }
+}
+
+export function loginClearError() {
+    return {
+        type: LOGIN_CLEAR_ERROR
     }
 }
 
@@ -77,6 +85,12 @@ export function registerError(error) {
     return {
         type: REGISTER_ERROR,
         data: error
+    }
+}
+
+export function registerClearError() {
+    return {
+        type: REGISTER_CLEAR_ERROR
     }
 }
 

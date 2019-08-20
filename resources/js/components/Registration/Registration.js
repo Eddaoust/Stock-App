@@ -11,10 +11,14 @@ import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class Registration extends Component {
+    componentWillUnmount() {
+        this.props.clearError();
+    }
+
     render() {
         // Render the spinner on loading
         let avatar = '';
-        if (this.props.loading) {
+        if (this.props.registration.loading) {
             avatar = <CircularProgress color="secondary" />;
         } else {
             avatar = <Avatar className={classes.Avatar}><LockOutlinedIcon/></Avatar>;
@@ -33,8 +37,8 @@ class Registration extends Component {
                 ]
             }
         };
-        if (this.props.error.registration) {
-            this.props.error.registration.data.errors.map(e => {
+        if (this.props.registration.error) {
+            this.props.registration.error.data.errors.map(e => {
                 if (e === 'The email has already been taken.') {
                     error.email.error = true;
                     error.email.message = "L'email est déja utilisé.";
@@ -49,7 +53,7 @@ class Registration extends Component {
 
         }
 
-        if (this.props.isRegister && !this.props.error.registration) {
+        if (this.props.user.status === 'reg' && !this.props.registration.error) {
             return <Redirect to="/"/>
         } else {
             return (
@@ -138,7 +142,6 @@ class Registration extends Component {
                             </Button>
                             <Grid container justify="flex-end">
                                 <Grid item>
-                                    {/* TODO: impossible to click when register or authicated is true */}
                                     <RouterLink to="/">Vous avez déja un compte? Connectez vous</RouterLink>
                                 </Grid>
                             </Grid>

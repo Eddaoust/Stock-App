@@ -13,10 +13,14 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 //TODO implement front validation on user input
 
 class Login extends Component {
+    componentWillUnmount() {
+        this.props.clearError();
+    }
+
     render() {
         // Render the spinner on loading
         let avatar = '';
-        if (this.props.loading) {
+        if (this.props.login.loading) {
             avatar = <CircularProgress className={classes.progress} color="secondary" />;
         } else {
             avatar = <Avatar className={classes.Avatar}><LockOutlinedIcon/></Avatar>;
@@ -24,12 +28,12 @@ class Login extends Component {
         // Add fields error props
         let error = false;
         let helperText = '';
-        if (this.props.error.login.status) {
+        if (this.props.login.error) {
             error = true;
             helperText = 'Email ou mot de passe non valide'
         }
 
-        if (this.props.isAuthenticated && !this.props.error.login) {
+        if (this.props.user.status === 'auth' && !this.props.login.error) {
             return <Redirect to="/stock"/>;
         } else {
             return (

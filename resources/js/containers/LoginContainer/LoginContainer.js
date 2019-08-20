@@ -1,15 +1,12 @@
 import Login from '../../components/Login/Login';
 import {connect} from 'react-redux';
-import {loginProcess} from '../../actions/users';
+import {loginProcess, loginClearError} from '../../actions/users';
 
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.isAuthenticated,
-        accessToken: state.accessToken,
-        loading: state.loading,
-        error: state.error,
-        user: state.user
+        user: state.user,
+        login: state.login
     };
 };
 
@@ -20,7 +17,8 @@ const mapDispatchToProps = dispatch => {
                 email: e.target.querySelectorAll('input')[0].value,
                 password: e.target.querySelectorAll('input')[1].value
             }))
-        }
+        },
+        clearError: () => dispatch(loginClearError())
     };
 };
 
