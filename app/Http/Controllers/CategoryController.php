@@ -16,11 +16,11 @@ class CategoryController extends Controller
      */
     public function index(User $user)
     {
-        $mainCategories = $user->categories->where('parent_id', '=', null);
-        foreach ($mainCategories as $category) {
+        $mainCat = $user->categories->where('parent_id', '=', null);
+        foreach ($mainCat as $category) {
             $category->children;
         }
-        return response()->json($mainCategories);
+        return response()->json($mainCat);
     }
 
     /**
