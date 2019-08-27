@@ -1,54 +1,206 @@
-import React, {Component} from 'react';
-import Drawer from '@material-ui/core/Drawer';
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MailIcon from '@material-ui/icons/Mail';
+import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Collapse from '@material-ui/core/Collapse';
 
+const drawerWidth = 240;
 
-class Category extends Component {
-    componentDidMount() {
-        this.props.categoryFetch(this.props.user.data.id, this.props.user.data.accessToken)
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+    },
+    drawer: {
+        [theme.breakpoints.up('sm')]: {
+            width: drawerWidth,
+            flexShrink: 0,
+        },
+    },
+    appBar: {
+        marginLeft: drawerWidth,
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - ${drawerWidth}px)`,
+        },
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+            display: 'none',
+        },
+    },
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
+        width: drawerWidth,
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+    },
+    nested: {
+        paddingLeft: theme.spacing(4),
+    },
+}));
+
+function Category(props) {
+    const { container } = props;
+    const classes = useStyles();
+    const theme = useTheme();
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+    // Get the user categories on mount
+    useEffect(() =>{
+        props.categoryFetch(props.user.data.id, props.user.data.accessToken)
+    }, [])
+
+    function handleDrawerToggle() {
+        setMobileOpen(!mobileOpen);
     }
-/*
-    categories() {
-        if (this.props.category.data) {
-            return this.props.category.data.map(mainCategories => {
-                return (
-                    <div key={mainCategories.id}>
-                        <MenuItem>{mainCategories.name}</MenuItem>
-                        <MenuList>
-                            {mainCategories.children.map(subCategories => {
-                                return (
-                                    <MenuItem key={subCategories.id}>{subCategories.name}</MenuItem>
-                                );
-                            })}
-                        </MenuList>
 
+    function handleMenuItemClick(event, index) {
+        setSelectedIndex(index);
+    }
+
+    const drawer = (
+        <div>
+            <div className={classes.toolbar} />
+            <Divider/>
+            <List>
+                <ListItem>
+                    <ListItemIcon><MailIcon /></ListItemIcon>
+                    <ListItemText>Ajouter une catégorie</ListItemText>
+                </ListItem>
+                <ListItem>
+                    <ListItemIcon><MailIcon /></ListItemIcon>
+                    <ListItemText>Ajouter un produit</ListItemText>
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                {props.category.data ? props.category.data.map(category => (
+                    <div>
+                        <ListItem button key={category.id}
+                                  onClick={event => handleMenuItemClick(event, category.id)}
+                                  selected={category.id === selectedIndex}>
+                            <ListItemText>{category.name}</ListItemText>
+                        </ListItem>
+                        <List className={classes.nested}>
+                            {category.children.map(subCategory => (
+                                <ListItem button key={subCategory.id}
+                                          onClick={event => handleMenuItemClick(event, subCategory.id)}
+                                          selected={subCategory.id === selectedIndex}>
+                                    <ListItemText>{subCategory.name}</ListItemText>
+                                </ListItem>
+                            ))}
+                        </List>
                     </div>
-                );
-            })
-        }
-    }*/
+                )): ''}
+            </List>
+        </div>
+    );
 
-    render() {
-        return (
-            <Drawer
-                variant="permanent"
-                anchor="left"
-                open="true"
-            >
-                <Menu>
-                    <MenuList>
-                        <MenuItem>Ajouter un produit</MenuItem>
-                        <MenuItem>Ajouter une catégorie</MenuItem>
-                    </MenuList>
-                </Menu>
-            </Drawer>
-        );
-    }
+    return (
+        <div className={classes.root}>
+            <CssBaseline />
+            <AppBar position="fixed" className={classes.appBar}>
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        className={classes.menuButton}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" noWrap>
+                        Stock App
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <nav className={classes.drawer} aria-label="mailbox folders">
+                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                <Hidden smUp implementation="css">
+                    <Drawer
+                        container={container}
+                        variant="temporary"
+                        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                        open={mobileOpen}
+                        onClose={handleDrawerToggle}
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        ModalProps={{
+                            keepMounted: true, // Better open performance on mobile.
+                        }}
+                    >
+                        {drawer}
+                    </Drawer>
+                </Hidden>
+                <Hidden xsDown implementation="css">
+                    <Drawer
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        variant="permanent"
+                        open
+                    >
+                        {drawer}
+                    </Drawer>
+                </Hidden>
+            </nav>
+
+            <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <Typography paragraph>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                    ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+                    facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+                    gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+                    donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+                    Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
+                    imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
+                    arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+                    donec massa sapien faucibus et molestie ac.
+                </Typography>
+                <Typography paragraph>
+                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
+                    facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
+                    tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
+                    consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
+                    vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
+                    hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
+                    tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
+                    nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
+                    accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
+                </Typography>
+            </main>
+
+        </div>
+    );
 }
 
+Category.propTypes = {
+    /**
+     * Injected by the documentation to work in an iframe.
+     * You won't need it on your project.
+     */
+    container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+};
+
 export default Category;
+
