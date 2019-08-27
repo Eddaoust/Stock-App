@@ -13,11 +13,11 @@ import {
     CATEGORY_FETCH_ERROR
     } from '../actions/categories';
 
-//TODO reset  the error state by adding an action on mount
 const initialState = {
     user: { status: false, data : {} },
     login: { loading: false, error: false },
-    registration: { loading: false, error: false }
+    registration: { loading: false, error: false },
+    category: {loading: false, error: false, data: false}
 };
 
 const reducer = (state = initialState, action) => {
@@ -66,17 +66,17 @@ const reducer = (state = initialState, action) => {
     } else if(action.type === CATEGORY_FETCH_REQUEST) {
         return {
             ...state,
-
+            category: {loading: true, error: false, data: false}
         };
     } else if(action.type === CATEGORY_FETCH_ERROR) {
         return {
             ...state,
-
+            category: {loading: false, error: action.data, data: false}
         };
     } else if(action.type === CATEGORY_FETCH_SUCCESS) {
         return {
             ...state,
-
+            category: {loading: false, error: false, data: action.data}
         };
     }
     return state;

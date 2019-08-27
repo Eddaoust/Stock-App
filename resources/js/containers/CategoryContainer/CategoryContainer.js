@@ -4,10 +4,6 @@ import {categoryFetchProcess} from "../../actions/categories";
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.isAuthenticated,
-        accessToken: state.accessToken,
-        loading: state.loading,
-        error: state.error,
         user: state.user,
         category: state.category
     };
