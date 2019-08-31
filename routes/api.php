@@ -27,7 +27,8 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::middleware('auth:api')->group(function () {
         Route::get('/logout', 'Api\AuthController@logout')->name('logout');
 
-        Route::apiResource('product', 'ProductController');
+        Route::apiResource('product', 'ProductController')->except(['index']);
+        Route::get('/products/{user}', 'ProductController@index')->name('product.index');
         Route::resource('category', 'CategoryController')->only([
             'store', 'update', 'destroy'
         ]);

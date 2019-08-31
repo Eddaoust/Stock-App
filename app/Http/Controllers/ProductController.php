@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductValidation;
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,11 +14,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        $products = Product::all();
-
-        return response()->json($products);
+        return response()->json($user->products);
     }
 
     /**
