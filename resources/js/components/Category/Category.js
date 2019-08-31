@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route, Link, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import ProductsContainer from "../../containers/ProductsContainer/ProductsContainer";
 
 const drawerWidth = 240;
 
@@ -65,7 +66,7 @@ function Category(props) {
     // Get the user categories on mount
     useEffect(() =>{
         props.categoryFetch(props.user.data.id, props.user.data.accessToken)
-    }, [])
+    }, []);
 
     function handleDrawerToggle() {
         setMobileOpen(!mobileOpen);
@@ -92,7 +93,7 @@ function Category(props) {
             <Divider />
             <List>
                 {props.category.data ? props.category.data.map(category => (
-                    <div>
+                    <div key={category.id}>
                         <ListItem button key={category.id}
                                   onClick={event => handleMenuItemClick(event, category.id)}
                                   selected={category.id === selectedIndex}>
@@ -165,7 +166,10 @@ function Category(props) {
             </nav>
 
             <main className={classes.content}>
-                <Route path="/stock/cat" render={() => <h1>Hello</h1>}/>
+                <Switch>
+                    <Route path="/stock/cat" exact render={() => <h1>Hello</h1>}/>
+                    <Route path="/stock" component={ProductsContainer}/>
+                </Switch>
             </main>
         </div>
     );

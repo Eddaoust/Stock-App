@@ -13,11 +13,18 @@ import {
     CATEGORY_FETCH_ERROR
     } from '../actions/categories';
 
+import {
+    PRODUCTS_FETCH_REQUEST,
+    PRODUCTS_FETCH_ERROR,
+    PRODUCTS_FETCH_SUCCESS
+} from "../actions/products";
+
 const initialState = {
     user: { status: false, data : {} },
     login: { loading: false, error: false },
     registration: { loading: false, error: false },
-    category: {loading: false, error: false, data: false}
+    category: {loading: false, error: false, data: false},
+    product: {loading: false, error: false, data: false}
 };
 
 const reducer = (state = initialState, action) => {
@@ -77,6 +84,21 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             category: {loading: false, error: false, data: action.data}
+        };
+    } else if(action.type === PRODUCTS_FETCH_REQUEST) {
+        return {
+            ...state,
+            product: {loading: true, error: false, data: false}
+        };
+    } else if(action.type === PRODUCTS_FETCH_ERROR) {
+        return {
+            ...state,
+            product: {loading: false, error: action.data, data: false}
+        };
+    } else if(action.type === PRODUCTS_FETCH_SUCCESS) {
+        return {
+            ...state,
+            product: {loading: false, error: false, data: action.data}
         };
     }
     return state;
