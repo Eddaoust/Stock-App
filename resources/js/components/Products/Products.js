@@ -12,13 +12,11 @@ function Products(props) {
         props.productsFetch(props.user.data.id, props.user.data.accessToken)
     }, []);
 
-    console.log(props)
-
     const card = (
         props.product.data ?
             (props.location.state && props.location.state.catId) ?
                 props.product.data.map(item => {
-                    if (item.category_id === props.location.state.catId) {
+                    if (item.category_id === props.location.state.catId || item.parent_category === props.location.state.catId) {
                         return (
                             <Grid item xs={12} sm={6} md={4}>
                                 <Card>

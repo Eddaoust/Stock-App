@@ -93,6 +93,10 @@ function Category(props) {
                     <ListItemIcon><MailIcon /></ListItemIcon>
                     <ListItemText>Ajouter un produit</ListItemText>
                 </ListItem>
+                <ListItem>
+                    <ListItemIcon><MailIcon /></ListItemIcon>
+                    <ListItemText><Link to='/stock'>Toutes les catégories</Link></ListItemText>
+                </ListItem>
             </List>
             <Divider />
             <List>
