@@ -20,6 +20,7 @@ class CategoryController extends Controller
         foreach ($mainCat as $category) {
             $category->children;
         }
+        //TODO add all response object in an iterable array
         return response()->json($mainCat);
     }
 

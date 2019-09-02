@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Route, Link, Switch, Redirect, withRouter} from 'react-router-dom';
+import {Route, Link, Switch, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,6 +17,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import ProductsContainer from "../../containers/ProductsContainer/ProductsContainer";
+import CategoryFormContainer from "../../containers/CategoryFormContainer/CategoryFormContainer";
 
 const drawerWidth = 240;
 
@@ -79,6 +80,7 @@ function Category(props) {
             state: {catId: index}
         })
     }
+    console.log(props)
 
     const drawer = (
         <div>
@@ -175,7 +177,7 @@ function Category(props) {
 
             <main className={classes.content}>
                 <Switch>
-                    <Route path="/stock/cat" exact render={() => <h1>Hello</h1>}/>
+                    <Route path="/stock/cat" exact component={CategoryFormContainer}/>
                     <Route path="/stock" component={ProductsContainer}/>
                 </Switch>
             </main>
