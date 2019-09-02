@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('img')->nullable(true);
             $table->integer('rating')->default(0);
             $table->json('infos')->nullable(true);
+            $table->unsignedInteger('parent_category')->nullable(true);
             $table->timestamps();
         });
     }
