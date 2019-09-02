@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Route, Link, Switch} from 'react-router-dom';
+import {Route, Link, Switch, Redirect, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -74,6 +74,10 @@ function Category(props) {
 
     function handleMenuItemClick(event, index) {
         setSelectedIndex(index);
+        props.history.push({
+            pathname: '/stock',
+            state: {catId: index}
+        })
     }
 
     const drawer = (
@@ -183,5 +187,5 @@ Category.propTypes = {
     container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
 };
 
-export default Category;
+export default withRouter(Category);
 
