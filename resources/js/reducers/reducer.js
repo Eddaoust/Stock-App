@@ -4,13 +4,18 @@ import {
     LOGIN_ERROR,
     REGISTER_REQUEST,
     REGISTER_ERROR,
-    REGISTER_SUCCESS, LOGIN_CLEAR_ERROR, REGISTER_CLEAR_ERROR,
+    REGISTER_SUCCESS,
+    LOGIN_CLEAR_ERROR,
+    REGISTER_CLEAR_ERROR,
 } from '../actions/users';
 
 import {
     CATEGORY_FETCH_REQUEST,
     CATEGORY_FETCH_SUCCESS,
-    CATEGORY_FETCH_ERROR
+    CATEGORY_FETCH_ERROR,
+    CATEGORY_CREATE_REQUEST,
+    CATEGORY_CREATE_ERROR,
+    CATEGORY_CREATE_SUCCESS
     } from '../actions/categories';
 
 import {
@@ -84,6 +89,21 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             category: {loading: false, error: false, data: action.data}
+        };
+    }  else if(action.type === CATEGORY_CREATE_REQUEST) {
+        return {
+            ...state,
+            category: {loading: true, error: false, data: false}
+        };
+    } else if(action.type === CATEGORY_CREATE_ERROR) {
+        return {
+            ...state,
+            category: {loading: false, error: action.data, data: false}
+        };
+    } else if(action.type === CATEGORY_CREATE_SUCCESS) {
+        return {
+            ...state,
+            category: {loading: false, error: false, data: [...state.category.data, action.data]}
         };
     } else if(action.type === PRODUCTS_FETCH_REQUEST) {
         return {

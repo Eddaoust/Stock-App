@@ -8,7 +8,7 @@ function CategoryForm(props) {
         <div>
             <form onSubmit={event => {
                 event.preventDefault();
-                //props.categoryCreate(event, props.user.data.accessToken)
+                props.categoryCreate(event, props.user.data.accessToken)
             }}>
                 <TextField
                     name="name"

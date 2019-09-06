@@ -80,7 +80,6 @@ function Category(props) {
             state: {catId: index}
         })
     }
-    console.log(props)
 
     const drawer = (
         <div>

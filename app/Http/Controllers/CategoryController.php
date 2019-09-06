@@ -17,11 +17,12 @@ class CategoryController extends Controller
     public function index(User $user)
     {
         $mainCat = $user->categories->where('parent_id', '=', null);
+        $categories = [];
         foreach ($mainCat as $category) {
+            $categories[] = $category;
             $category->children;
         }
-        //TODO add all response object in an iterable array
-        return response()->json($mainCat);
+        return response()->json($categories);
     }
 
     /**
@@ -42,14 +43,13 @@ class CategoryController extends Controller
      */
     public function store(CategoryValidation $request)
     {
-        //TODO Check if parent Id realy exist
         $validated = $request->validated();
         $category = new Category();
         foreach ($validated as $key => $value) {
             $category->$key = $value;
         }
         $category->save();
-        $validated['message'] = 'Category created!';
+        $validated['parent_id'] = null;
         $validated['id'] = $category->id;
         return response()->json($validated, 200);
     }

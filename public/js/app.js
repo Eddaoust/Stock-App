@@ -98252,7 +98252,6 @@ function Category(props) {
     });
   }
 
-  console.log(props);
   var drawer = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.toolbar
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_9__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_10__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_11__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_13___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_12__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -98369,7 +98368,8 @@ __webpack_require__.r(__webpack_exports__);
 function CategoryForm(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: function onSubmit(event) {
-      event.preventDefault(); //props.categoryCreate(event, props.user.data.accessToken)
+      event.preventDefault();
+      props.categoryCreate(event, props.user.data.accessToken);
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: "name",
@@ -99456,7 +99456,31 @@ var reducer = function reducer() {
       category: {
         loading: false,
         error: false,
-        data: _toConsumableArray(action.data)
+        data: action.data
+      }
+    });
+  } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_CREATE_REQUEST"]) {
+    return _objectSpread({}, state, {
+      category: {
+        loading: true,
+        error: false,
+        data: false
+      }
+    });
+  } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_CREATE_ERROR"]) {
+    return _objectSpread({}, state, {
+      category: {
+        loading: false,
+        error: action.data,
+        data: false
+      }
+    });
+  } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_CREATE_SUCCESS"]) {
+    return _objectSpread({}, state, {
+      category: {
+        loading: false,
+        error: false,
+        data: [].concat(_toConsumableArray(state.category.data), [action.data])
       }
     });
   } else if (action.type === _actions_products__WEBPACK_IMPORTED_MODULE_2__["PRODUCTS_FETCH_REQUEST"]) {
