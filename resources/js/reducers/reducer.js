@@ -93,12 +93,12 @@ const reducer = (state = initialState, action) => {
     }  else if(action.type === CATEGORY_CREATE_REQUEST) {
         return {
             ...state,
-            category: {loading: true, error: false, data: false}
+            category: {loading: true, error: false, data: [...state.category.data]}
         };
     } else if(action.type === CATEGORY_CREATE_ERROR) {
         return {
             ...state,
-            category: {loading: false, error: action.data, data: false}
+            category: {loading: false, error: action.data, data: [...state.category.data]}
         };
     } else if(action.type === CATEGORY_CREATE_SUCCESS) {
         return {

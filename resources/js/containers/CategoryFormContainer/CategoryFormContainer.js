@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => {
     return {
         categoryCreate: (event, token) => dispatch(categoryCreateProcess({
             name: event.target.querySelectorAll('input')[0].value,
-            user_id: event.target.querySelectorAll('input')[1].value
+            user_id: event.target.querySelectorAll('input')[1].value,
         }, token))
     };
 };

@@ -97716,10 +97716,10 @@ var CATEGORY_CREATE_REQUEST = 'CATEGORY_CREATE_REQUEST';
 var CATEGORY_CREATE_SUCCESS = 'CATEGORY_CREATE_SUCCESS';
 var CATEGORY_CREATE_ERROR = 'CATEGORY_CREATE_ERROR';
 var ROOTURL = 'http://localhost:8888';
-var REQUEST_HEADER = new Headers({
+var REQUEST_HEADER = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
-});
+};
 function categoryFetchRequest() {
   return {
     type: CATEGORY_FETCH_REQUEST
@@ -99464,7 +99464,7 @@ var reducer = function reducer() {
       category: {
         loading: true,
         error: false,
-        data: false
+        data: _toConsumableArray(state.category.data)
       }
     });
   } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_CREATE_ERROR"]) {
@@ -99472,7 +99472,7 @@ var reducer = function reducer() {
       category: {
         loading: false,
         error: action.data,
-        data: false
+        data: _toConsumableArray(state.category.data)
       }
     });
   } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_CREATE_SUCCESS"]) {

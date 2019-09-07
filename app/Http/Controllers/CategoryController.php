@@ -51,6 +51,7 @@ class CategoryController extends Controller
         $category->save();
         $validated['parent_id'] = null;
         $validated['id'] = $category->id;
+        $validated['children'] = [];
         return response()->json($validated, 200);
     }
 

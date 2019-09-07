@@ -8,10 +8,10 @@ export const CATEGORY_CREATE_ERROR = 'CATEGORY_CREATE_ERROR';
 
 
 const ROOTURL = 'http://localhost:8888';
-const REQUEST_HEADER = new Headers({
+const REQUEST_HEADER = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-});
+};
 
 export function categoryFetchRequest() {
     return {
