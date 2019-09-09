@@ -1,4 +1,4 @@
-import Category from '../../components/Category/Category';
+import Layout from '../../components/Layout/Layout';
 import {connect} from 'react-redux';
 import {categoryFetchProcess} from "../../actions/categories";
 
@@ -15,4 +15,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Category);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

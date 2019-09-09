@@ -1,5 +1,8 @@
 import React, {useEffect} from 'react';
 import {Route, Link, Switch, withRouter} from 'react-router-dom';
+import ProductsContainer from "../../containers/ProductsContainer/ProductsContainer";
+import CategoryFormContainer from "../../containers/CategoryFormContainer/CategoryFormContainer";
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,9 +18,9 @@ import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import ProductsContainer from "../../containers/ProductsContainer/ProductsContainer";
-import CategoryFormContainer from "../../containers/CategoryFormContainer/CategoryFormContainer";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 const drawerWidth = 240;
 
@@ -57,7 +60,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function Category(props) {
+function Layout(props) {
     const { container } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -76,8 +79,18 @@ function Category(props) {
     function handleMenuItemClick(event, index) {
         setSelectedIndex(index);
         props.history.push({
-            pathname: '/stock',
+            pathname: '/app',
             state: {catId: index}
+        })
+    }
+
+    function handleCategoryEdit(category_id, category_name) {
+        props.history.push({
+            pathname: "/app/category",
+            state: {
+                categoryId: category_id,
+                categoryName: category_name
+            }
         })
     }
 
@@ -88,7 +101,7 @@ function Category(props) {
             <List>
                 <ListItem>
                     <ListItemIcon><MailIcon /></ListItemIcon>
-                    <ListItemText><Link to="/stock/cat">Ajouter une catégorie</Link></ListItemText>
+                    <ListItemText><Link to="/app/category">Ajouter une catégorie</Link></ListItemText>
                 </ListItem>
                 <ListItem>
                     <ListItemIcon><MailIcon /></ListItemIcon>
@@ -96,7 +109,7 @@ function Category(props) {
                 </ListItem>
                 <ListItem>
                     <ListItemIcon><MailIcon /></ListItemIcon>
-                    <ListItemText><Link to='/stock'>Toutes les catégories</Link></ListItemText>
+                    <ListItemText><Link to='/app'>Toutes les catégories</Link></ListItemText>
                 </ListItem>
             </List>
             <Divider />
@@ -108,6 +121,15 @@ function Category(props) {
                                   onClick={event => handleMenuItemClick(event, category.id)}
                                   selected={category.id === selectedIndex}>
                             <ListItemText>{category.name}</ListItemText>
+                            <IconButton
+                                onClick={() => handleCategoryEdit(category.id, category.name)}
+                                size="small">
+                                <EditIcon fontSize="small"/>
+                            </IconButton>
+                            <IconButton
+                                size="small">
+                                <DeleteIcon fontSize="small"/>
+                            </IconButton>
                         </ListItem>
                         <List className={classes.nested}>
                             {category.children.map(subCategory => (
@@ -115,6 +137,12 @@ function Category(props) {
                                           onClick={event => handleMenuItemClick(event, subCategory.id)}
                                           selected={subCategory.id === selectedIndex}>
                                     <ListItemText>{subCategory.name}</ListItemText>
+                                    <IconButton
+                                        onClick={() => handleCategoryEdit(subCategory.id, subCategory.name)}
+                                        size="small">
+                                        <EditIcon fontSize="small"/>
+                                    </IconButton>
+                                    <IconButton size="small"><DeleteIcon fontSize="small"/></IconButton>
                                 </ListItem>
                             ))}
                         </List>
@@ -177,15 +205,15 @@ function Category(props) {
 
             <main className={classes.content}>
                 <Switch>
-                    <Route path="/stock/cat" exact component={CategoryFormContainer}/>
-                    <Route path="/stock" component={ProductsContainer}/>
+                    <Route path="/app/category" exact component={CategoryFormContainer}/>
+                    <Route path="/app" component={ProductsContainer}/>
                 </Switch>
             </main>
         </div>
     );
 }
 
-Category.propTypes = {
+Layout.propTypes = {
     /**
      * Injected by the documentation to work in an iframe.
      * You won't need it on your project.
@@ -193,5 +221,5 @@ Category.propTypes = {
     container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
 };
 
-export default withRouter(Category);
+export default withRouter(Layout);
 
