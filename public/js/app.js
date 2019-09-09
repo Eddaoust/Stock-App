@@ -25279,6 +25279,30 @@ var e=function(e){return parseFloat(e)};/* harmony default export */ __webpack_e
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/CategoryForm/CategoryForm.module.css":
+/*!******************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/CategoryForm/CategoryForm.module.css ***!
+  \******************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".CategoryForm-module__Content___kXWMx {\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n}\n\n.CategoryForm-module__Paper___202tg {\n    width: 800px;\n    padding: 30px;\n    margin: 100px;\n}\n\n.CategoryForm-module__Title___YtUSl {\n    margin-bottom: 15px!important;\n}\n\n.CategoryForm-module__Button___3ZQYa {\n    margin-top: 15px!important;\n}\n\n@media screen and (max-width: 400px) {\n    .CategoryForm-module__Paper___202tg {\n        width: 100%;\n        padding: 30px;\n        margin: 0;\n    }\n}\n", ""]);
+
+// exports
+exports.locals = {
+	"Content": "CategoryForm-module__Content___kXWMx",
+	"Paper": "CategoryForm-module__Paper___202tg",
+	"Title": "CategoryForm-module__Title___YtUSl",
+	"Button": "CategoryForm-module__Button___3ZQYa"
+};
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Login/Login.module.css":
 /*!****************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Login/Login.module.css ***!
@@ -98357,21 +98381,55 @@ Category.propTypes = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
-/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
-/* harmony import */ var _material_ui_core_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Input */ "./node_modules/@material-ui/core/esm/Input/index.js");
+/* harmony import */ var _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CategoryForm/CategoryForm.module.css */ "./resources/js/components/CategoryForm/CategoryForm.module.css");
+/* harmony import */ var _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _material_ui_core_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Input */ "./node_modules/@material-ui/core/esm/Input/index.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+
+
+
+
 
 
 
 
 
 function CategoryForm(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  // Add fields error props
+  var error = false;
+  var helperText = '';
+
+  if (props.category.error) {
+    error = true;
+    helperText = props.category.error.data.errors.name[0];
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Content
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Paper
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    container: true,
+    direction: "row",
+    justify: "center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    item: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: "h1",
+    variant: "h5",
+    align: "center",
+    className: _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Title
+  }, "Ajouter une cat\xE9gorie"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: function onSubmit(event) {
       event.preventDefault();
       props.categoryCreate(event, props.user.data.accessToken);
+      event.target.querySelectorAll('input')[0].value = '';
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "name",
     variant: "outlined",
     required: true,
@@ -98379,22 +98437,55 @@ function CategoryForm(props) {
     id: "name",
     label: "Cat\xE9gories",
     autoFocus: true,
-    type: "text"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    type: "text",
+    error: error,
+    helperText: helperText
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "user_id",
     required: true,
     id: "user_id",
     type: "hidden",
     value: props.user.data.id
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     type: "submit",
     fullWidth: true,
     variant: "contained",
-    color: "primary"
-  }, "Ajouter")));
+    color: "primary",
+    className: _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Button
+  }, "Ajouter"))))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (CategoryForm);
+
+/***/ }),
+
+/***/ "./resources/js/components/CategoryForm/CategoryForm.module.css":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/CategoryForm/CategoryForm.module.css ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/postcss-loader/src??ref--6-2!./CategoryForm.module.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/CategoryForm/CategoryForm.module.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -98645,6 +98736,7 @@ function Products(props) {
   var card = props.product.data ? props.location.state && props.location.state.catId ? props.product.data.map(function (item) {
     if (item.category_id === props.location.state.catId || item.parent_category === props.location.state.catId) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        key: item.id,
         item: true,
         xs: 12,
         sm: 6,
@@ -98661,6 +98753,7 @@ function Products(props) {
     }
   }) : props.product.data.map(function (item) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      key: item.id,
       item: true,
       xs: 12,
       sm: 6,

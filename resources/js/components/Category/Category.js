@@ -101,6 +101,7 @@ function Category(props) {
             </List>
             <Divider />
             <List>
+                {/*TODO Sort by alphabetical order*/}
                 {props.category.data ? props.category.data.map(category => (
                     <div key={category.id}>
                         <ListItem button key={category.id}

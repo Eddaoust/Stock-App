@@ -18,7 +18,7 @@ function Products(props) {
                 props.product.data.map(item => {
                     if (item.category_id === props.location.state.catId || item.parent_category === props.location.state.catId) {
                         return (
-                            <Grid item xs={12} sm={6} md={4}>
+                            <Grid key={item.id} item xs={12} sm={6} md={4}>
                                 <Card>
                                     <CardContent>
                                         <Typography variant="h5" component="h2">
@@ -37,7 +37,7 @@ function Products(props) {
                     }
                 })
                 : props.product.data.map(item => (
-                    <Grid item xs={12} sm={6} md={4}>
+                    <Grid key={item.id} item xs={12} sm={6} md={4}>
                         <Card>
                             <CardContent>
                                 <Typography variant="h5" component="h2">
