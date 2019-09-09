@@ -97805,7 +97805,7 @@ function categoryCreateError(error) {
     data: error
   };
 }
-function categoryCreateProcess(formValues, token) {
+function categoryCreateProcess(formValues, token, props) {
   return function (dispatch) {
     dispatch(categoryCreateRequest());
     return fetch("".concat(ROOTURL, "/api/category"), {
@@ -97828,6 +97828,7 @@ function categoryCreateProcess(formValues, token) {
       } else {
         res.json().then(function (response) {
           dispatch(categoryCreateSuccess(response));
+          props.history.push('/stock');
         });
       }
     });
@@ -98436,11 +98437,8 @@ function CategoryForm(props) {
   }, "Ajouter une cat\xE9gorie"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: function onSubmit(event) {
       event.preventDefault();
-      props.categoryCreate(event, props.user.data.accessToken);
-
-      if (!error) {
-        event.target.querySelectorAll('input')[0].value = '';
-      }
+      props.categoryCreate(event, props.user.data.accessToken, props);
+      event.target.querySelectorAll('input')[0].value = '';
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "name",
@@ -99146,11 +99144,11 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    categoryCreate: function categoryCreate(event, token) {
+    categoryCreate: function categoryCreate(event, token, props) {
       return dispatch(Object(_actions_categories__WEBPACK_IMPORTED_MODULE_2__["categoryCreateProcess"])({
         name: event.target.querySelectorAll('input')[0].value,
         user_id: event.target.querySelectorAll('input')[1].value
-      }, token));
+      }, token, props));
     }
   };
 };

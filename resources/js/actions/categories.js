@@ -85,7 +85,7 @@ export function categoryCreateError(error) {
     }
 }
 
-export function categoryCreateProcess(formValues, token) {
+export function categoryCreateProcess(formValues, token, props) {
     return function(dispatch) {
         dispatch(categoryCreateRequest())
         return fetch(`${ROOTURL}/api/category`, {
@@ -112,6 +112,7 @@ export function categoryCreateProcess(formValues, token) {
                     res.json()
                         .then(response => {
                             dispatch(categoryCreateSuccess(response))
+                            props.history.push('/stock')
                         });
                 }
             })

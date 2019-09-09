@@ -44,7 +44,7 @@ function CategoryForm(props) {
                         </Typography>
                         <form onSubmit={event => {
                             event.preventDefault();
-                            props.categoryCreate(event, props.user.data.accessToken)
+                            props.categoryCreate(event, props.user.data.accessToken, props)
                             event.target.querySelectorAll('input')[0].value = ''
                         }}>
                             <TextField
