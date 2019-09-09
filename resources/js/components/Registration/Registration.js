@@ -50,7 +50,6 @@ class Registration extends Component {
                     error.password.message[1] = "Les mots de passe ne sont pas identique.";
                 }
             })
-
         }
 
         if (this.props.user.status === 'reg' && !this.props.registration.error) {

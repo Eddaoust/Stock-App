@@ -98404,8 +98404,18 @@ function CategoryForm(props) {
   var helperText = '';
 
   if (props.category.error) {
-    error = true;
-    helperText = props.category.error.data.errors.name[0];
+    props.category.error.data.errors.name.map(function (e) {
+      if (e === 'The name must be at least 2 characters.') {
+        error = true;
+        helperText = "La catégorie doit faire au moins 2 caractères.";
+      } else if (e === 'The name may not be greater than 30 characters.') {
+        error = true;
+        helperText = "La catégorie doit faire au maximum 30 caractères.";
+      } else if (e === 'The name must be a string.') {
+        error = true;
+        helperText = "La catégorie doit être une chaine de caractère.";
+      }
+    });
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -98427,7 +98437,10 @@ function CategoryForm(props) {
     onSubmit: function onSubmit(event) {
       event.preventDefault();
       props.categoryCreate(event, props.user.data.accessToken);
-      event.target.querySelectorAll('input')[0].value = '';
+
+      if (!error) {
+        event.target.querySelectorAll('input')[0].value = '';
+      }
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "name",
