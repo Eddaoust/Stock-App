@@ -24,7 +24,7 @@ class ProductValidation extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:2|max:255',
+            'name' => 'required|string|min:2|max:50',
             'description' => 'string|min:1',
             'img' => 'url',
             'rating' => 'integer',
