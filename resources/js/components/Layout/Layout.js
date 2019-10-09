@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {Route, Link, Switch, withRouter} from 'react-router-dom';
+import Navbar from "./UI/Navbar";
 import ProductsContainer from "../../containers/ProductsContainer/ProductsContainer";
 import CategoryFormContainer from "../../containers/CategoryFormContainer/CategoryFormContainer";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -32,18 +33,6 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             width: drawerWidth,
             flexShrink: 0,
-        },
-    },
-    appBar: {
-        marginLeft: drawerWidth,
-        [theme.breakpoints.up('sm')]: {
-            width: `calc(100% - ${drawerWidth}px)`,
-        },
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
-            display: 'none',
         },
     },
     toolbar: theme.mixins.toolbar,
@@ -155,22 +144,7 @@ function Layout(props) {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        className={classes.menuButton}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Stock App
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+            <Navbar clicked={handleDrawerToggle}/>
             <nav className={classes.drawer} aria-label="mailbox folders">
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Hidden smUp implementation="css">
