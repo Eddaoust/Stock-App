@@ -7,7 +7,7 @@ export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
-const ROOTURL = 'http://localhost:8888';
+const ROOTURL = 'http://localhost';
 const REQUEST_HEADER = new Headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json',

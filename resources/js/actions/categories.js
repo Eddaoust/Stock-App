@@ -7,7 +7,7 @@ export const CATEGORY_CREATE_SUCCESS = 'CATEGORY_CREATE_SUCCESS';
 export const CATEGORY_CREATE_ERROR = 'CATEGORY_CREATE_ERROR';
 
 
-const ROOTURL = 'http://localhost:8888';
+const ROOTURL = 'http://localhost';
 const REQUEST_HEADER = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',

@@ -8,7 +8,7 @@ export const REGISTER_ERROR = 'REGISTER_ERROR';
 export const REGISTER_CLEAR_ERROR = 'REGISTER_CLEAR_ERROR';
 export const FETCH_USER = 'FETCH_USER';
 
-const ROOTURL = 'http://localhost:8888';
+const ROOTURL = 'http://localhost';
 const REQUEST_HEADER = new Headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json',

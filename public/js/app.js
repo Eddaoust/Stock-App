@@ -97797,7 +97797,7 @@ var CATEGORY_FETCH_ERROR = 'CATEGORY_ERROR';
 var CATEGORY_CREATE_REQUEST = 'CATEGORY_CREATE_REQUEST';
 var CATEGORY_CREATE_SUCCESS = 'CATEGORY_CREATE_SUCCESS';
 var CATEGORY_CREATE_ERROR = 'CATEGORY_CREATE_ERROR';
-var ROOTURL = 'http://localhost:8888';
+var ROOTURL = 'http://localhost';
 var REQUEST_HEADER = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -97928,7 +97928,7 @@ var FETCH_PRODUCT = 'FETCH_PRODUCT';
 var CREATE_PRODUCT = 'CREATE_PRODUCT';
 var UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 var DELETE_PRODUCT = 'DELETE_PRODUCT';
-var ROOTURL = 'http://localhost:8888';
+var ROOTURL = 'http://localhost';
 var REQUEST_HEADER = new Headers({
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -98017,7 +98017,7 @@ var REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 var REGISTER_ERROR = 'REGISTER_ERROR';
 var REGISTER_CLEAR_ERROR = 'REGISTER_CLEAR_ERROR';
 var FETCH_USER = 'FETCH_USER';
-var ROOTURL = 'http://localhost:8888';
+var ROOTURL = 'http://localhost';
 var REQUEST_HEADER = new Headers({
   'Content-Type': 'application/json',
   'Accept': 'application/json'
