@@ -15,7 +15,10 @@ import {
     CATEGORY_FETCH_ERROR,
     CATEGORY_CREATE_REQUEST,
     CATEGORY_CREATE_ERROR,
-    CATEGORY_CREATE_SUCCESS
+    CATEGORY_CREATE_SUCCESS,
+    CATEGORY_EDIT_REQUEST,
+    CATEGORY_EDIT_ERROR,
+    CATEGORY_EDIT_SUCCESS
     } from '../actions/categories';
 
 import {
@@ -101,6 +104,21 @@ const reducer = (state = initialState, action) => {
             category: {loading: false, error: action.data, data: [...state.category.data]}
         };
     } else if(action.type === CATEGORY_CREATE_SUCCESS) {
+        return {
+            ...state,
+            category: {loading: false, error: false, data: [...state.category.data, action.data]}
+        };
+    } else if(action.type === CATEGORY_EDIT_REQUEST) {
+        return {
+            ...state,
+            category: {loading: true, error: false, data: [...state.category.data]}
+        };
+    } else if(action.type === CATEGORY_EDIT_ERROR) {
+        return {
+            ...state,
+            category: {loading: false, error: action.data, data: [...state.category.data]}
+        };
+    } else if(action.type === CATEGORY_EDIT_SUCCESS) {
         return {
             ...state,
             category: {loading: false, error: false, data: [...state.category.data, action.data]}

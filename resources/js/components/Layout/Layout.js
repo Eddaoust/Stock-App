@@ -73,7 +73,8 @@ function Layout(props) {
         })
     }
 
-    function handleCategoryEdit(category_id, category_name) {
+    function handleCategoryEdit(event, category_id, category_name) {
+        event.stopPropagation();
         props.history.push({
             pathname: "/app/category",
             state: {
@@ -111,7 +112,7 @@ function Layout(props) {
                                   selected={category.id === selectedIndex}>
                             <ListItemText>{category.name}</ListItemText>
                             <IconButton
-                                onClick={() => handleCategoryEdit(category.id, category.name)}
+                                onClick={(event) => handleCategoryEdit(event, category.id, category.name)}
                                 size="small">
                                 <EditIcon fontSize="small"/>
                             </IconButton>
@@ -127,7 +128,7 @@ function Layout(props) {
                                           selected={subCategory.id === selectedIndex}>
                                     <ListItemText>{subCategory.name}</ListItemText>
                                     <IconButton
-                                        onClick={() => handleCategoryEdit(subCategory.id, subCategory.name)}
+                                        onClick={(event) => handleCategoryEdit(event, subCategory.id, subCategory.name)}
                                         size="small">
                                         <EditIcon fontSize="small"/>
                                     </IconButton>

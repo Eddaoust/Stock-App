@@ -6,6 +6,10 @@ export const CATEGORY_CREATE_REQUEST = 'CATEGORY_CREATE_REQUEST';
 export const CATEGORY_CREATE_SUCCESS = 'CATEGORY_CREATE_SUCCESS';
 export const CATEGORY_CREATE_ERROR = 'CATEGORY_CREATE_ERROR';
 
+export const CATEGORY_EDIT_REQUEST = 'CATEGORY_EDIT_REQUEST';
+export const CATEGORY_EDIT_SUCCESS = 'CATEGORY_EDIT_SUCCESS';
+export const CATEGORY_EDIT_ERROR = 'CATEGORY_EDIT_ERROR';
+
 
 const ROOTURL = 'http://localhost';
 const REQUEST_HEADER = {
@@ -60,6 +64,60 @@ export function categoryFetchProcess(user_id, token) {
                     .then(response => {
                         dispatch(categoryFetchSuccess(response))
                     });
+                }
+            })
+    }
+}
+
+export function categoryEditRequest() {
+    return {
+        type: CATEGORY_EDIT_REQUEST
+    }
+}
+
+export function categoryEditSuccess(response) {
+    return {
+        type: CATEGORY_EDIT_SUCCESS,
+        data: response
+    }
+}
+
+export function categoryEditError(error) {
+    return {
+        type: CATEGORY_EDIT_ERROR,
+        data: error
+    }
+}
+
+export function categoryEditProcess(formValues, token, props) {
+    return function(dispatch) {
+        dispatch(categoryEditRequest())
+        return fetch(`${ROOTURL}/api/category`, {
+            method: 'PATCH',
+            headers: {
+                ...REQUEST_HEADER,
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(formValues)
+        })
+            .then(res => {
+                if (res.status !== 200) {
+                    const handleError = {
+                        status: res.status,
+                        text: res.statusText,
+                        data: ''
+                    };
+                    res.json()
+                        .then(error => {
+                            handleError.data = error;
+                            dispatch(categoryEditError(handleError))
+                        })
+                } else {
+                    res.json()
+                        .then(response => {
+                            dispatch(categoryEditSuccess(response))
+                            props.history.push('/app')
+                        });
                 }
             })
     }

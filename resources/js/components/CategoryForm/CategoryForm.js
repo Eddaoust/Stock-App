@@ -27,6 +27,21 @@ function CategoryForm(props) {
         })
     }
 
+    let name = ''
+    let action = 'Ajouter'
+    let input = ''
+    if (props.location.state) {
+        name = props.location.state.categoryName
+        action = 'Modifier'
+        input = <Input
+            name="category_id"
+            required
+            id="category_id"
+            type="hidden"
+            value={props.location.state.categoryId}
+        />
+    }
+
     return (
         <div className={classes.Content}>
             <Paper className={classes.Paper}>
@@ -40,11 +55,16 @@ function CategoryForm(props) {
                             variant="h5"
                             align="center"
                             className={classes.Title}>
-                            Ajouter une catégorie
+                            {`${action} une catégorie`}
                         </Typography>
                         <form onSubmit={event => {
                             event.preventDefault();
-                            props.categoryCreate(event, props.user.data.accessToken, props)
+                            if (props.location.state) {
+                                console.log('EDIT CAT')
+                            } else {
+                                props.categoryCreate(event, props.user.data.accessToken, props)
+                            }
+
                             event.target.querySelectorAll('input')[0].value = ''
                         }}>
                             <TextField
@@ -58,6 +78,7 @@ function CategoryForm(props) {
                                 type="text"
                                 error={error}
                                 helperText={helperText}
+                                {props.location.state ? value = name : ''}
                             />
                             <Input
                                 name="user_id"

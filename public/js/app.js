@@ -25337,30 +25337,6 @@ var e=function(e){return parseFloat(e)};/* harmony default export */ __webpack_e
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/CategoryForm/CategoryForm.module.css":
-/*!******************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/CategoryForm/CategoryForm.module.css ***!
-  \******************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".CategoryForm-module__Content___kXWMx {\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n}\n\n.CategoryForm-module__Paper___202tg {\n    width: 800px;\n    padding: 30px;\n    margin: 100px;\n}\n\n.CategoryForm-module__Title___YtUSl {\n    margin-bottom: 15px!important;\n}\n\n.CategoryForm-module__Button___3ZQYa {\n    margin-top: 15px!important;\n}\n\n@media screen and (max-width: 400px) {\n    .CategoryForm-module__Paper___202tg {\n        width: 100%;\n        padding: 30px;\n        margin: 0;\n    }\n}\n", ""]);
-
-// exports
-exports.locals = {
-	"Content": "CategoryForm-module__Content___kXWMx",
-	"Paper": "CategoryForm-module__Paper___202tg",
-	"Title": "CategoryForm-module__Title___YtUSl",
-	"Button": "CategoryForm-module__Button___3ZQYa"
-};
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Login/Login.module.css":
 /*!****************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Login/Login.module.css ***!
@@ -97766,7 +97742,7 @@ module.exports = function(module) {
 /*!********************************************!*\
   !*** ./resources/js/actions/categories.js ***!
   \********************************************/
-/*! exports provided: CATEGORY_FETCH_REQUEST, CATEGORY_FETCH_SUCCESS, CATEGORY_FETCH_ERROR, CATEGORY_CREATE_REQUEST, CATEGORY_CREATE_SUCCESS, CATEGORY_CREATE_ERROR, categoryFetchRequest, categoryFetchSuccess, categoryFetchError, categoryFetchProcess, categoryCreateRequest, categoryCreateSuccess, categoryCreateError, categoryCreateProcess */
+/*! exports provided: CATEGORY_FETCH_REQUEST, CATEGORY_FETCH_SUCCESS, CATEGORY_FETCH_ERROR, CATEGORY_CREATE_REQUEST, CATEGORY_CREATE_SUCCESS, CATEGORY_CREATE_ERROR, CATEGORY_EDIT_REQUEST, CATEGORY_EDIT_SUCCESS, CATEGORY_EDIT_ERROR, categoryFetchRequest, categoryFetchSuccess, categoryFetchError, categoryFetchProcess, categoryEditRequest, categoryEditSuccess, categoryEditError, categoryEditProcess, categoryCreateRequest, categoryCreateSuccess, categoryCreateError, categoryCreateProcess */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -97777,10 +97753,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CATEGORY_CREATE_REQUEST", function() { return CATEGORY_CREATE_REQUEST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CATEGORY_CREATE_SUCCESS", function() { return CATEGORY_CREATE_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CATEGORY_CREATE_ERROR", function() { return CATEGORY_CREATE_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CATEGORY_EDIT_REQUEST", function() { return CATEGORY_EDIT_REQUEST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CATEGORY_EDIT_SUCCESS", function() { return CATEGORY_EDIT_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CATEGORY_EDIT_ERROR", function() { return CATEGORY_EDIT_ERROR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryFetchRequest", function() { return categoryFetchRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryFetchSuccess", function() { return categoryFetchSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryFetchError", function() { return categoryFetchError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryFetchProcess", function() { return categoryFetchProcess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryEditRequest", function() { return categoryEditRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryEditSuccess", function() { return categoryEditSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryEditError", function() { return categoryEditError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryEditProcess", function() { return categoryEditProcess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryCreateRequest", function() { return categoryCreateRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryCreateSuccess", function() { return categoryCreateSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryCreateError", function() { return categoryCreateError; });
@@ -97797,6 +97780,9 @@ var CATEGORY_FETCH_ERROR = 'CATEGORY_ERROR';
 var CATEGORY_CREATE_REQUEST = 'CATEGORY_CREATE_REQUEST';
 var CATEGORY_CREATE_SUCCESS = 'CATEGORY_CREATE_SUCCESS';
 var CATEGORY_CREATE_ERROR = 'CATEGORY_CREATE_ERROR';
+var CATEGORY_EDIT_REQUEST = 'CATEGORY_EDIT_REQUEST';
+var CATEGORY_EDIT_SUCCESS = 'CATEGORY_EDIT_SUCCESS';
+var CATEGORY_EDIT_ERROR = 'CATEGORY_EDIT_ERROR';
 var ROOTURL = 'http://localhost';
 var REQUEST_HEADER = {
   'Content-Type': 'application/json',
@@ -97841,6 +97827,52 @@ function categoryFetchProcess(user_id, token) {
       } else {
         res.json().then(function (response) {
           dispatch(categoryFetchSuccess(response));
+        });
+      }
+    });
+  };
+}
+function categoryEditRequest() {
+  return {
+    type: CATEGORY_EDIT_REQUEST
+  };
+}
+function categoryEditSuccess(response) {
+  return {
+    type: CATEGORY_EDIT_SUCCESS,
+    data: response
+  };
+}
+function categoryEditError(error) {
+  return {
+    type: CATEGORY_EDIT_ERROR,
+    data: error
+  };
+}
+function categoryEditProcess(formValues, token, props) {
+  return function (dispatch) {
+    dispatch(categoryEditRequest());
+    return fetch("".concat(ROOTURL, "/api/category"), {
+      method: 'PATCH',
+      headers: _objectSpread({}, REQUEST_HEADER, {
+        'Authorization': "Bearer ".concat(token)
+      }),
+      body: JSON.stringify(formValues)
+    }).then(function (res) {
+      if (res.status !== 200) {
+        var handleError = {
+          status: res.status,
+          text: res.statusText,
+          data: ''
+        };
+        res.json().then(function (error) {
+          handleError.data = error;
+          dispatch(categoryEditError(handleError));
+        });
+      } else {
+        res.json().then(function (response) {
+          dispatch(categoryEditSuccess(response));
+          props.history.push('/app');
         });
       }
     });
@@ -98207,128 +98239,10 @@ if (token) {
 /*!**************************************************************!*\
   !*** ./resources/js/components/CategoryForm/CategoryForm.js ***!
   \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CategoryForm/CategoryForm.module.css */ "./resources/js/components/CategoryForm/CategoryForm.module.css");
-/* harmony import */ var _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
-/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
-/* harmony import */ var _material_ui_core_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Input */ "./node_modules/@material-ui/core/esm/Input/index.js");
-/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
-/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
-/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
-
-
-
-
-
-
-
-
-
-function CategoryForm(props) {
-  // Add fields error props
-  var error = false;
-  var helperText = '';
-
-  if (props.category.error) {
-    props.category.error.data.errors.name.map(function (e) {
-      if (e === 'The name must be at least 2 characters.') {
-        error = true;
-        helperText = "La catégorie doit faire au moins 2 caractères.";
-      } else if (e === 'The name may not be greater than 30 characters.') {
-        error = true;
-        helperText = "La catégorie doit faire au maximum 30 caractères.";
-      } else if (e === 'The name must be a string.') {
-        error = true;
-        helperText = "La catégorie doit être une chaine de caractère.";
-      }
-    });
-  }
-
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Content
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    className: _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Paper
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    container: true,
-    direction: "row",
-    justify: "center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    item: true
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    component: "h1",
-    variant: "h5",
-    align: "center",
-    className: _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Title
-  }, "Ajouter une cat\xE9gorie"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: function onSubmit(event) {
-      event.preventDefault();
-      props.categoryCreate(event, props.user.data.accessToken, props);
-      event.target.querySelectorAll('input')[0].value = '';
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "name",
-    variant: "outlined",
-    required: true,
-    fullWidth: true,
-    id: "name",
-    label: "Cat\xE9gories",
-    autoFocus: true,
-    type: "text",
-    error: error,
-    helperText: helperText
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "user_id",
-    required: true,
-    id: "user_id",
-    type: "hidden",
-    value: props.user.data.id
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    type: "submit",
-    fullWidth: true,
-    variant: "contained",
-    color: "primary",
-    className: _CategoryForm_CategoryForm_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Button
-  }, "Ajouter"))))));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (CategoryForm);
-
-/***/ }),
-
-/***/ "./resources/js/components/CategoryForm/CategoryForm.module.css":
-/*!**********************************************************************!*\
-  !*** ./resources/js/components/CategoryForm/CategoryForm.module.css ***!
-  \**********************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/postcss-loader/src??ref--6-2!./CategoryForm.module.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/CategoryForm/CategoryForm.module.css");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/resources/js/components/CategoryForm/CategoryForm.js: Unexpected token, expected \"...\" (81:33)\n\n\u001b[0m \u001b[90m 79 | \u001b[39m                                error\u001b[33m=\u001b[39m{error}\u001b[0m\n\u001b[0m \u001b[90m 80 | \u001b[39m                                helperText\u001b[33m=\u001b[39m{helperText}\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 81 | \u001b[39m                                {props\u001b[33m.\u001b[39mlocation\u001b[33m.\u001b[39mstate \u001b[33m?\u001b[39m \u001b[32m'value = {name}'\u001b[39m \u001b[33m:\u001b[39m \u001b[32m''\u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 82 | \u001b[39m                            \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 83 | \u001b[39m                            \u001b[33m<\u001b[39m\u001b[33mInput\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 84 | \u001b[39m                                name\u001b[33m=\u001b[39m\u001b[32m\"user_id\"\u001b[39m\u001b[0m\n    at Object.raise (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:6325:17)\n    at Object.unexpected (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:7642:16)\n    at Object.expect (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:7628:28)\n    at Object.jsxParseAttribute (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3463:12)\n    at Object.jsxParseOpeningElementAfterName (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3490:28)\n    at Object.jsxParseOpeningElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3483:17)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3515:33)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElement (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3589:17)\n    at Object.parseExprAtom (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3596:19)\n    at Object.parseExprSubscripts (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8412:23)\n    at Object.parseMaybeUnary (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8392:21)\n    at Object.parseExprOps (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8267:23)\n    at Object.parseMaybeConditional (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8240:23)\n    at Object.parseMaybeAssign (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8187:21)\n    at Object.parseParenAndDistinguishExpression (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8978:28)\n    at Object.parseExprAtom (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8762:21)\n    at Object.parseExprAtom (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3601:20)\n    at Object.parseExprSubscripts (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8412:23)\n    at Object.parseMaybeUnary (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8392:21)\n    at Object.parseExprOps (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8267:23)\n    at Object.parseMaybeConditional (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8240:23)\n    at Object.parseMaybeAssign (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8187:21)\n    at Object.parseExpression (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8135:23)\n    at Object.parseReturnStatement (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:10198:28)\n    at Object.parseStatementContent (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:9877:21)\n    at Object.parseStatement (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:9829:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:10405:25)\n    at Object.parseBlockBody (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:10392:10)\n    at Object.parseBlock (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:10376:10)\n    at Object.parseFunctionBody (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:9424:24)\n    at Object.parseFunctionBodyAndFinish (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:9394:10)");
 
 /***/ }),
 
@@ -98462,7 +98376,8 @@ function Layout(props) {
     });
   }
 
-  function handleCategoryEdit(category_id, category_name) {
+  function handleCategoryEdit(event, category_id, category_name) {
+    event.stopPropagation();
     props.history.push({
       pathname: "/app/category",
       state: {
@@ -98489,8 +98404,8 @@ function Layout(props) {
       },
       selected: category.id === selectedIndex
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_16__["default"], null, category.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_12__["default"], {
-      onClick: function onClick() {
-        return handleCategoryEdit(category.id, category.name);
+      onClick: function onClick(event) {
+        return handleCategoryEdit(event, category.id, category.name);
       },
       size: "small"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_21___default.a, {
@@ -98510,8 +98425,8 @@ function Layout(props) {
         },
         selected: subCategory.id === selectedIndex
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_16__["default"], null, subCategory.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_12__["default"], {
-        onClick: function onClick() {
-          return handleCategoryEdit(subCategory.id, subCategory.name);
+        onClick: function onClick(event) {
+          return handleCategoryEdit(event, subCategory.id, subCategory.name);
         },
         size: "small"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_21___default.a, {
@@ -99240,6 +99155,7 @@ function AppContainer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _components_CategoryForm_CategoryForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/CategoryForm/CategoryForm */ "./resources/js/components/CategoryForm/CategoryForm.js");
+/* harmony import */ var _components_CategoryForm_CategoryForm__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_CategoryForm_CategoryForm__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _actions_categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/categories */ "./resources/js/actions/categories.js");
 
 
@@ -99259,11 +99175,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         name: event.target.querySelectorAll('input')[0].value,
         user_id: event.target.querySelectorAll('input')[1].value
       }, token, props));
+    },
+    categoryEdit: function categoryEdit(event, token, props) {
+      return dispatch(Object(_actions_categories__WEBPACK_IMPORTED_MODULE_2__["categoryEditProcess"])({
+        name: event.target.querySelectorAll('input')[0].value,
+        user_id: event.target.querySelectorAll('input')[1].value
+      }, token, props));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_CategoryForm_CategoryForm__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_CategoryForm_CategoryForm__WEBPACK_IMPORTED_MODULE_1___default.a));
 
 /***/ }),
 
@@ -99725,6 +99647,30 @@ var reducer = function reducer() {
       }
     });
   } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_CREATE_SUCCESS"]) {
+    return _objectSpread({}, state, {
+      category: {
+        loading: false,
+        error: false,
+        data: [].concat(_toConsumableArray(state.category.data), [action.data])
+      }
+    });
+  } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_EDIT_REQUEST"]) {
+    return _objectSpread({}, state, {
+      category: {
+        loading: true,
+        error: false,
+        data: _toConsumableArray(state.category.data)
+      }
+    });
+  } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_EDIT_ERROR"]) {
+    return _objectSpread({}, state, {
+      category: {
+        loading: false,
+        error: action.data,
+        data: _toConsumableArray(state.category.data)
+      }
+    });
+  } else if (action.type === _actions_categories__WEBPACK_IMPORTED_MODULE_1__["CATEGORY_EDIT_SUCCESS"]) {
     return _objectSpread({}, state, {
       category: {
         loading: false,
