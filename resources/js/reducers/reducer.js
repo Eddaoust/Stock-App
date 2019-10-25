@@ -121,6 +121,7 @@ const reducer = (state = initialState, action) => {
     } else if(action.type === CATEGORY_EDIT_SUCCESS) {
         return {
             ...state,
+            //TODO Find a way to replace data in category
             category: {loading: false, error: false, data: [...state.category.data, action.data]}
         };
     } else if(action.type === PRODUCTS_FETCH_REQUEST) {

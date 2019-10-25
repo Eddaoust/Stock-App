@@ -25337,6 +25337,54 @@ var e=function(e){return parseFloat(e)};/* harmony default export */ __webpack_e
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Category/CategoryAdd.module.css":
+/*!*************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Category/CategoryAdd.module.css ***!
+  \*************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".CategoryAdd-module__Content___1DBxy {\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n}\n\n.CategoryAdd-module__Paper___2Kl1U {\n    width: 800px;\n    padding: 30px;\n    margin: 100px;\n}\n\n.CategoryAdd-module__Title___QqBmP {\n    margin-bottom: 15px!important;\n}\n\n.CategoryAdd-module__Button___3exim {\n    margin-top: 15px!important;\n}\n\n@media screen and (max-width: 400px) {\n    .CategoryAdd-module__Paper___2Kl1U {\n        width: 100%;\n        padding: 30px;\n        margin: 0;\n    }\n}\n", ""]);
+
+// exports
+exports.locals = {
+	"Content": "CategoryAdd-module__Content___1DBxy",
+	"Paper": "CategoryAdd-module__Paper___2Kl1U",
+	"Title": "CategoryAdd-module__Title___QqBmP",
+	"Button": "CategoryAdd-module__Button___3exim"
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Category/CategoryEdit.module.css":
+/*!**************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Category/CategoryEdit.module.css ***!
+  \**************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".CategoryEdit-module__Content___2Erj1 {\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n}\n\n.CategoryEdit-module__Paper___3yE8L {\n    width: 800px;\n    padding: 30px;\n    margin: 100px;\n}\n\n.CategoryEdit-module__Title___2kyGp {\n    margin-bottom: 15px!important;\n}\n\n.CategoryEdit-module__Button___31-3p {\n    margin-top: 15px!important;\n}\n\n@media screen and (max-width: 400px) {\n    .CategoryEdit-module__Paper___3yE8L {\n        width: 100%;\n        padding: 30px;\n        margin: 0;\n    }\n}\n", ""]);
+
+// exports
+exports.locals = {
+	"Content": "CategoryEdit-module__Content___2Erj1",
+	"Paper": "CategoryEdit-module__Paper___3yE8L",
+	"Title": "CategoryEdit-module__Title___2kyGp",
+	"Button": "CategoryEdit-module__Button___31-3p"
+};
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Login/Login.module.css":
 /*!****************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Login/Login.module.css ***!
@@ -97852,7 +97900,7 @@ function categoryEditError(error) {
 function categoryEditProcess(formValues, token, props) {
   return function (dispatch) {
     dispatch(categoryEditRequest());
-    return fetch("".concat(ROOTURL, "/api/category"), {
+    return fetch("".concat(ROOTURL, "/api/category/").concat(formValues.category_id), {
       method: 'PATCH',
       headers: _objectSpread({}, REQUEST_HEADER, {
         'Authorization': "Bearer ".concat(token)
@@ -98235,14 +98283,268 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/CategoryForm/CategoryForm.js":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/CategoryForm/CategoryForm.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/components/Category/CategoryAdd.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/Category/CategoryAdd.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/resources/js/components/CategoryForm/CategoryForm.js: Unexpected token, expected \"...\" (81:33)\n\n\u001b[0m \u001b[90m 79 | \u001b[39m                                error\u001b[33m=\u001b[39m{error}\u001b[0m\n\u001b[0m \u001b[90m 80 | \u001b[39m                                helperText\u001b[33m=\u001b[39m{helperText}\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 81 | \u001b[39m                                {props\u001b[33m.\u001b[39mlocation\u001b[33m.\u001b[39mstate \u001b[33m?\u001b[39m \u001b[32m'value = {name}'\u001b[39m \u001b[33m:\u001b[39m \u001b[32m''\u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 82 | \u001b[39m                            \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 83 | \u001b[39m                            \u001b[33m<\u001b[39m\u001b[33mInput\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 84 | \u001b[39m                                name\u001b[33m=\u001b[39m\u001b[32m\"user_id\"\u001b[39m\u001b[0m\n    at Object.raise (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:6325:17)\n    at Object.unexpected (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:7642:16)\n    at Object.expect (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:7628:28)\n    at Object.jsxParseAttribute (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3463:12)\n    at Object.jsxParseOpeningElementAfterName (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3490:28)\n    at Object.jsxParseOpeningElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3483:17)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3515:33)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElementAt (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3531:32)\n    at Object.jsxParseElement (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3589:17)\n    at Object.parseExprAtom (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3596:19)\n    at Object.parseExprSubscripts (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8412:23)\n    at Object.parseMaybeUnary (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8392:21)\n    at Object.parseExprOps (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8267:23)\n    at Object.parseMaybeConditional (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8240:23)\n    at Object.parseMaybeAssign (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8187:21)\n    at Object.parseParenAndDistinguishExpression (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8978:28)\n    at Object.parseExprAtom (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8762:21)\n    at Object.parseExprAtom (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:3601:20)\n    at Object.parseExprSubscripts (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8412:23)\n    at Object.parseMaybeUnary (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8392:21)\n    at Object.parseExprOps (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8267:23)\n    at Object.parseMaybeConditional (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8240:23)\n    at Object.parseMaybeAssign (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8187:21)\n    at Object.parseExpression (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:8135:23)\n    at Object.parseReturnStatement (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:10198:28)\n    at Object.parseStatementContent (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:9877:21)\n    at Object.parseStatement (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:9829:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:10405:25)\n    at Object.parseBlockBody (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:10392:10)\n    at Object.parseBlock (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:10376:10)\n    at Object.parseFunctionBody (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:9424:24)\n    at Object.parseFunctionBodyAndFinish (/Users/edmonddaoust/Documents/Web_dev/PHP/Laravel/stock-app/node_modules/@babel/parser/lib/index.js:9394:10)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _CategoryAdd_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryAdd.module.css */ "./resources/js/components/Category/CategoryAdd.module.css");
+/* harmony import */ var _CategoryAdd_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CategoryAdd_module_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _material_ui_core_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Input */ "./node_modules/@material-ui/core/esm/Input/index.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+
+
+
+
+
+
+
+
+
+function CategoryAdd(props) {
+  // Add fields error props
+  var error = false;
+  var helperText = '';
+
+  if (props.category.error) {
+    props.category.error.data.errors.name.map(function (e) {
+      if (e === 'The name must be at least 2 characters.') {
+        error = true;
+        helperText = "La catégorie doit faire au moins 2 caractères.";
+      } else if (e === 'The name may not be greater than 30 characters.') {
+        error = true;
+        helperText = "La catégorie doit faire au maximum 30 caractères.";
+      } else if (e === 'The name must be a string.') {
+        error = true;
+        helperText = "La catégorie doit être une chaine de caractère.";
+      }
+    });
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _CategoryAdd_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Content
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: _CategoryAdd_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Paper
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    container: true,
+    direction: "row",
+    justify: "center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    item: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: "h1",
+    variant: "h5",
+    align: "center",
+    className: _CategoryAdd_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Title
+  }, "Ajouter une cat\xE9gorie"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: function onSubmit(event) {
+      event.preventDefault();
+      props.categoryCreate(event, props.user.data.accessToken, props);
+      event.target.querySelectorAll('input')[0].value = '';
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "name",
+    variant: "outlined",
+    required: true,
+    fullWidth: true,
+    id: "name",
+    label: "Cat\xE9gories",
+    autoFocus: true,
+    type: "text",
+    error: error,
+    helperText: helperText
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "user_id",
+    required: true,
+    id: "user_id",
+    type: "hidden",
+    value: props.user.data.id
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    type: "submit",
+    fullWidth: true,
+    variant: "contained",
+    color: "primary",
+    className: _CategoryAdd_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Button
+  }, "Ajouter"))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (CategoryAdd);
+
+/***/ }),
+
+/***/ "./resources/js/components/Category/CategoryAdd.module.css":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/Category/CategoryAdd.module.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/postcss-loader/src??ref--6-2!./CategoryAdd.module.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Category/CategoryAdd.module.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/Category/CategoryEdit.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Category/CategoryEdit.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _CategoryEdit_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryEdit.module.css */ "./resources/js/components/Category/CategoryEdit.module.css");
+/* harmony import */ var _CategoryEdit_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CategoryEdit_module_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _material_ui_core_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Input */ "./node_modules/@material-ui/core/esm/Input/index.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+
+
+
+
+
+
+
+
+
+function CategoryEdit(props) {
+  // Add fields error props
+  var error = false;
+  var helperText = '';
+
+  if (props.category.error) {
+    props.category.error.data.errors.name.map(function (e) {
+      if (e === 'The name must be at least 2 characters.') {
+        error = true;
+        helperText = "La catégorie doit faire au moins 2 caractères.";
+      } else if (e === 'The name may not be greater than 30 characters.') {
+        error = true;
+        helperText = "La catégorie doit faire au maximum 30 caractères.";
+      } else if (e === 'The name must be a string.') {
+        error = true;
+        helperText = "La catégorie doit être une chaine de caractère.";
+      }
+    });
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _CategoryEdit_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Content
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: _CategoryEdit_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Paper
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    container: true,
+    direction: "row",
+    justify: "center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    item: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: "h1",
+    variant: "h5",
+    align: "center",
+    className: _CategoryEdit_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Title
+  }, "Editer une cat\xE9gorie"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: function onSubmit(event) {
+      event.preventDefault();
+      props.categoryEdit(event, props.user.data.accessToken, props);
+      event.target.querySelectorAll('input')[0].value = '';
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "name",
+    variant: "outlined",
+    required: true,
+    fullWidth: true,
+    id: "name",
+    label: "Cat\xE9gories",
+    autoFocus: true,
+    type: "text",
+    error: error,
+    helperText: helperText,
+    defaultValue: props.location.state.categoryName
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "user_id",
+    required: true,
+    id: "user_id",
+    type: "hidden",
+    value: props.user.data.id
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "category_id",
+    required: true,
+    id: "category_id",
+    type: "hidden",
+    value: props.location.state.categoryId
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    type: "submit",
+    fullWidth: true,
+    variant: "contained",
+    color: "primary",
+    className: _CategoryEdit_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.Button
+  }, "Editer"))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (CategoryEdit);
+
+/***/ }),
+
+/***/ "./resources/js/components/Category/CategoryEdit.module.css":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/Category/CategoryEdit.module.css ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/postcss-loader/src??ref--6-2!./CategoryEdit.module.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Category/CategoryEdit.module.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -98260,11 +98562,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _UI_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UI/Navbar */ "./resources/js/components/Layout/UI/Navbar.js");
 /* harmony import */ var _containers_ProductsContainer_ProductsContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../containers/ProductsContainer/ProductsContainer */ "./resources/js/containers/ProductsContainer/ProductsContainer.js");
-/* harmony import */ var _containers_CategoryFormContainer_CategoryFormContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../containers/CategoryFormContainer/CategoryFormContainer */ "./resources/js/containers/CategoryFormContainer/CategoryFormContainer.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/AppBar */ "./node_modules/@material-ui/core/esm/AppBar/index.js");
+/* harmony import */ var _containers_CategoryAddContainer_CategoryAddContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../containers/CategoryAddContainer/CategoryAddContainer */ "./resources/js/containers/CategoryAddContainer/CategoryAddContainer.js");
+/* harmony import */ var _containers_CategoryEditContainer_CategoryEditContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../containers/CategoryEditContainer/CategoryEditContainer */ "./resources/js/containers/CategoryEditContainer/CategoryEditContainer.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/CssBaseline */ "./node_modules/@material-ui/core/esm/CssBaseline/index.js");
 /* harmony import */ var _material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/index.js");
 /* harmony import */ var _material_ui_core_Drawer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Drawer */ "./node_modules/@material-ui/core/esm/Drawer/index.js");
@@ -98276,14 +98578,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/ListItemText */ "./node_modules/@material-ui/core/esm/ListItemText/index.js");
 /* harmony import */ var _material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @material-ui/icons/Mail */ "./node_modules/@material-ui/icons/Mail.js");
 /* harmony import */ var _material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/icons/Menu */ "./node_modules/@material-ui/icons/Menu.js");
-/* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @material-ui/core/Toolbar */ "./node_modules/@material-ui/core/esm/Toolbar/index.js");
-/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
-/* harmony import */ var _material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @material-ui/icons/Edit */ "./node_modules/@material-ui/icons/Edit.js");
-/* harmony import */ var _material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material-ui/icons/Delete */ "./node_modules/@material-ui/icons/Delete.js");
-/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/icons/Edit */ "./node_modules/@material-ui/icons/Edit.js");
+/* harmony import */ var _material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @material-ui/icons/Delete */ "./node_modules/@material-ui/icons/Delete.js");
+/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -98314,11 +98612,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-
 var drawerWidth = 240;
-var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["makeStyles"])(function (theme) {
+var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["makeStyles"])(function (theme) {
   return {
     root: {
       display: 'flex'
@@ -98345,7 +98640,7 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["ma
 function Layout(props) {
   var container = props.container;
   var classes = useStyles();
-  var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["useTheme"])();
+  var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["useTheme"])();
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -98379,7 +98674,7 @@ function Layout(props) {
   function handleCategoryEdit(event, category_id, category_name) {
     event.stopPropagation();
     props.history.push({
-      pathname: "/app/category",
+      pathname: "/app/category/edit",
       state: {
         categoryId: category_id,
         categoryName: category_name
@@ -98390,7 +98685,7 @@ function Layout(props) {
   var drawer = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.toolbar
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_9__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_13__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_14__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_15__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_17___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_16__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/app/category"
+    to: "/app/category/add"
   }, "Ajouter une cat\xE9gorie"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_14__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_15__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_17___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_16__["default"], null, "Ajouter un produit")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_14__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_15__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_17___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_16__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/app"
   }, "Toutes les cat\xE9gories")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_9__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_13__["default"], null, props.category.data ? props.category.data.map(function (category) {
@@ -98408,11 +98703,11 @@ function Layout(props) {
         return handleCategoryEdit(event, category.id, category.name);
       },
       size: "small"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_21___default.a, {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_18___default.a, {
       fontSize: "small"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_12__["default"], {
       size: "small"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_22___default.a, {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19___default.a, {
       fontSize: "small"
     }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_13__["default"], {
       className: classes.nested
@@ -98429,11 +98724,11 @@ function Layout(props) {
           return handleCategoryEdit(event, subCategory.id, subCategory.name);
         },
         size: "small"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_21___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Edit__WEBPACK_IMPORTED_MODULE_18___default.a, {
         fontSize: "small"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_12__["default"], {
         size: "small"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_22___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19___default.a, {
         fontSize: "small"
       })));
     })));
@@ -98473,9 +98768,13 @@ function Layout(props) {
   }, drawer))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: classes.content
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/app/category",
+    path: "/app/category/add",
     exact: true,
-    component: _containers_CategoryFormContainer_CategoryFormContainer__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _containers_CategoryAddContainer_CategoryAddContainer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/app/category/edit",
+    exact: true,
+    component: _containers_CategoryEditContainer_CategoryEditContainer__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/app",
     component: _containers_ProductsContainer_ProductsContainer__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -98487,7 +98786,7 @@ Layout.propTypes = {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  container: prop_types__WEBPACK_IMPORTED_MODULE_6___default.a.instanceOf(typeof Element === 'undefined' ? Object : Element)
+  container: prop_types__WEBPACK_IMPORTED_MODULE_7___default.a.instanceOf(typeof Element === 'undefined' ? Object : Element)
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Layout));
 
@@ -99144,18 +99443,17 @@ function AppContainer() {
 
 /***/ }),
 
-/***/ "./resources/js/containers/CategoryFormContainer/CategoryFormContainer.js":
-/*!********************************************************************************!*\
-  !*** ./resources/js/containers/CategoryFormContainer/CategoryFormContainer.js ***!
-  \********************************************************************************/
+/***/ "./resources/js/containers/CategoryAddContainer/CategoryAddContainer.js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/containers/CategoryAddContainer/CategoryAddContainer.js ***!
+  \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _components_CategoryForm_CategoryForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/CategoryForm/CategoryForm */ "./resources/js/components/CategoryForm/CategoryForm.js");
-/* harmony import */ var _components_CategoryForm_CategoryForm__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_CategoryForm_CategoryForm__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Category_CategoryAdd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Category/CategoryAdd */ "./resources/js/components/Category/CategoryAdd.js");
 /* harmony import */ var _actions_categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/categories */ "./resources/js/actions/categories.js");
 
 
@@ -99175,17 +99473,50 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         name: event.target.querySelectorAll('input')[0].value,
         user_id: event.target.querySelectorAll('input')[1].value
       }, token, props));
-    },
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_Category_CategoryAdd__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./resources/js/containers/CategoryEditContainer/CategoryEditContainer.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/containers/CategoryEditContainer/CategoryEditContainer.js ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_Category_CategoryEdit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Category/CategoryEdit */ "./resources/js/components/Category/CategoryEdit.js");
+/* harmony import */ var _actions_categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/categories */ "./resources/js/actions/categories.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    user: state.user,
+    category: state.category
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
     categoryEdit: function categoryEdit(event, token, props) {
       return dispatch(Object(_actions_categories__WEBPACK_IMPORTED_MODULE_2__["categoryEditProcess"])({
         name: event.target.querySelectorAll('input')[0].value,
-        user_id: event.target.querySelectorAll('input')[1].value
+        user_id: event.target.querySelectorAll('input')[1].value,
+        category_id: event.target.querySelectorAll('input')[2].value
       }, token, props));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_CategoryForm_CategoryForm__WEBPACK_IMPORTED_MODULE_1___default.a));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_Category_CategoryEdit__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

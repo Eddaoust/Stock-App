@@ -69,8 +69,9 @@ class CategoryController extends Controller
             $category->$key = $value;
         }
         $category->save();
-        $validated['message'] = 'Category updated!';
+        $validated['parent_id'] = null;
         $validated['id'] = $category->id;
+        $validated['children'] = [];
         return response()->json($validated, 200);
     }
 

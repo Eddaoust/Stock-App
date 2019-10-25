@@ -1,5 +1,5 @@
 import React from "react";
-import classes from '../CategoryForm/CategoryForm.module.css';
+import classes from './CategoryEdit.module.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-function CategoryForm(props) {
+function CategoryEdit(props) {
 
     // Add fields error props
     let error = false;
@@ -27,44 +27,24 @@ function CategoryForm(props) {
         })
     }
 
-    let name = ''
-    let action = 'Ajouter'
-    let input = ''
-    if (props.location.state) {
-        name = props.location.state.categoryName
-        action = 'Modifier'
-        input = <Input
-            name="category_id"
-            required
-            id="category_id"
-            type="hidden"
-            value={props.location.state.categoryId}
-        />
-    }
-
     return (
         <div className={classes.Content}>
             <Paper className={classes.Paper}>
                 <Grid
-                container
-                direction="row"
-                justify="center">
+                    container
+                    direction="row"
+                    justify="center">
                     <Grid item >
                         <Typography
                             component="h1"
                             variant="h5"
                             align="center"
                             className={classes.Title}>
-                            {`${action} une catégorie`}
+                            Editer une catégorie
                         </Typography>
                         <form onSubmit={event => {
                             event.preventDefault();
-                            if (props.location.state) {
-                                console.log('EDIT CAT')
-                            } else {
-                                props.categoryCreate(event, props.user.data.accessToken, props)
-                            }
-
+                            props.categoryEdit(event, props.user.data.accessToken, props)
                             event.target.querySelectorAll('input')[0].value = ''
                         }}>
                             <TextField
@@ -78,7 +58,7 @@ function CategoryForm(props) {
                                 type="text"
                                 error={error}
                                 helperText={helperText}
-                                {props.location.state ? value = name : ''}
+                                defaultValue={props.location.state.categoryName}
                             />
                             <Input
                                 name="user_id"
@@ -87,6 +67,13 @@ function CategoryForm(props) {
                                 type="hidden"
                                 value={props.user.data.id}
                             />
+                            <Input
+                                name="category_id"
+                                required
+                                id="category_id"
+                                type="hidden"
+                                value={props.location.state.categoryId}
+                            />
                             <Button
                                 type="submit"
                                 fullWidth
@@ -94,7 +81,7 @@ function CategoryForm(props) {
                                 color="primary"
                                 className={classes.Button}
                             >
-                                Ajouter
+                                Editer
                             </Button>
                         </form>
                     </Grid>
@@ -105,4 +92,4 @@ function CategoryForm(props) {
     );
 }
 
-export default CategoryForm;
+export default CategoryEdit;

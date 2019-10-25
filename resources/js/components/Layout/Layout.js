@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import {Route, Link, Switch, withRouter} from 'react-router-dom';
 import Navbar from "./UI/Navbar";
 import ProductsContainer from "../../containers/ProductsContainer/ProductsContainer";
-import CategoryFormContainer from "../../containers/CategoryFormContainer/CategoryFormContainer";
+import CategoryAddContainer from "../../containers/CategoryAddContainer/CategoryAddContainer";
+import CategoryEditContainer from "../../containers/CategoryEditContainer/CategoryEditContainer";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -16,9 +16,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -76,7 +73,7 @@ function Layout(props) {
     function handleCategoryEdit(event, category_id, category_name) {
         event.stopPropagation();
         props.history.push({
-            pathname: "/app/category",
+            pathname: "/app/category/edit",
             state: {
                 categoryId: category_id,
                 categoryName: category_name
@@ -91,7 +88,7 @@ function Layout(props) {
             <List>
                 <ListItem>
                     <ListItemIcon><MailIcon /></ListItemIcon>
-                    <ListItemText><Link to="/app/category">Ajouter une catégorie</Link></ListItemText>
+                    <ListItemText><Link to="/app/category/add">Ajouter une catégorie</Link></ListItemText>
                 </ListItem>
                 <ListItem>
                     <ListItemIcon><MailIcon /></ListItemIcon>
@@ -180,7 +177,8 @@ function Layout(props) {
 
             <main className={classes.content}>
                 <Switch>
-                    <Route path="/app/category" exact component={CategoryFormContainer}/>
+                    <Route path="/app/category/add" exact component={CategoryAddContainer}/>
+                    <Route path="/app/category/edit" exact component={CategoryEditContainer}/>
                     <Route path="/app" component={ProductsContainer}/>
                 </Switch>
             </main>

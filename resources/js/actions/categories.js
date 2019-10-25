@@ -92,7 +92,7 @@ export function categoryEditError(error) {
 export function categoryEditProcess(formValues, token, props) {
     return function(dispatch) {
         dispatch(categoryEditRequest())
-        return fetch(`${ROOTURL}/api/category`, {
+        return fetch(`${ROOTURL}/api/category/${formValues.category_id}`, {
             method: 'PATCH',
             headers: {
                 ...REQUEST_HEADER,
